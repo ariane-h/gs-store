@@ -1,12 +1,18 @@
 import React from "react";
-import { Typography, makeStyles, CssBaseline, Grid } from "@material-ui/core";
+import {
+	Typography,
+	makeStyles,
+	CssBaseline,
+	Grid,
+	Box,
+} from "@material-ui/core";
 
 const Footer = () => {
 	const useStyles = makeStyles((theme) => ({
 		root: {
 			display: "flex",
 			flexDirection: "column",
-			minHeight: "100vh",
+			minHeight: "80vh",
 		},
 
 		footer: {
@@ -24,34 +30,36 @@ const Footer = () => {
 		<div className={classes.root}>
 			<CssBaseline />
 			<footer className={classes.footer}>
-				<Grid
-					container
-					direction="row"
-					justify="space-evenly"
-					alignItems="center"
-					spacing={4}
-				>
+				<Grid container direction="row" justify="space-evenly" spacing={4}>
 					<Grid item xs={4}>
-						<Typography variant="body1">Help and Info</Typography>
-						<Typography variant="body2">Contact</Typography>
-						<Typography variant="body2">Delivery and Returns</Typography>
-						<Typography variant="body2">Find a Store</Typography>
+						<Box display="flex" flexDirection="column" alignItems="center">
+							<Typography variant="body1">Help and Info</Typography>
+							<Typography variant="body2">Contact</Typography>
+							<Typography variant="body2">Delivery and Returns</Typography>
+							<Typography variant="body2">Find a Store</Typography>
+						</Box>
 					</Grid>
 					<Grid item xs={4}>
-						<Typography variant="body1">About</Typography>
-						<Typography variant="body2">About Us</Typography>
-						<Typography variant="body2">Careers</Typography>
+						<Box display="flex" flexDirection="column" alignItems="center">
+							<Typography variant="body1">About</Typography>
+							<Typography variant="body2">About Us</Typography>
+							<Typography variant="body2">Careers</Typography>
+						</Box>
 					</Grid>
 					<Grid item xs={4}>
-						<Typography variant="body1">Follow</Typography>
-						<Typography variant="body2">Twitter</Typography>
-						<Typography variant="body2">Facebook</Typography>
-						<Typography variant="body2">Instagram</Typography>
+						<Box display="flex" flexDirection="column" alignItems="center">
+							<Typography variant="body1">Follow</Typography>
+							<Typography variant="body2">Twitter</Typography>
+							<Typography variant="body2">Facebook</Typography>
+							<Typography variant="body2">Instagram</Typography>
+						</Box>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="body2" color="textSecondary">
-							Copyright © Golden Shoe 2020
-						</Typography>
+						<Box display="flex" flexDirection="column" alignItems="center">
+							<Typography variant="body2" color="textSecondary">
+								Copyright © Golden Shoe 2020
+							</Typography>
+						</Box>
 					</Grid>
 				</Grid>
 			</footer>

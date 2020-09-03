@@ -32,7 +32,7 @@ const ProductCard = (props) => {
 				image={imageUrl}
 				title={title}
 			/>
-			<CardHeader title={title} subheader={subtitle} />
+			<CardHeader title={title} subheader="price" />
 			<CardContent>
 				<Typography variant="body2" component="p">
 					{description}
