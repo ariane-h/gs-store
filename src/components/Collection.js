@@ -1,11 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import firebase from "../config/firebase";
 
 const Collection = () => {
 	const { products } = useContext(ProductContext);
+
+	const [collectionProducts, setCollectionProducts] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const db = firebase.firestore();
+			return db
+				.collection("products")
+				.where("collections.women", "==", true)
+				.onSnapshot((snapshot) => {
+					const productData = [];
+					snapshot.forEach((product) =>
+						productData.push({ ...product.data(), id: product.id })
+					);
+					setCollectionProducts(productData);
+				});
+		};
+		fetchData();
+	}, []);
+
+	// console.log(collectionProducts);
 
 	return (
 		<>
