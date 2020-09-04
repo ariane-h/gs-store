@@ -10,13 +10,14 @@ import {
 	Select,
 	Box,
 } from "@material-ui/core";
+import ProductDescription from "./ProductDescription";
+import ProductTabs from "./ProductTabs";
 
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
 	const id = props.match.params.id;
 
 	const product = products.find((product) => product.id === id);
-	console.log(product);
 
 	const useStyles = makeStyles((theme) => ({
 		formControl: {
@@ -50,7 +51,13 @@ const Product = (props) => {
 
 					<Grid container item direction="row">
 						<Grid item sm={6}>
-							<img src="https://via.placeholder.com/800" height="440" alt="" />
+							<Box>
+								<img
+									src="https://via.placeholder.com/800"
+									height="440"
+									alt=""
+								/>
+							</Box>
 						</Grid>
 						<Grid container item direction="column" sm={6} spacing={4}>
 							<Grid item>
@@ -89,30 +96,10 @@ const Product = (props) => {
 					{/* bottom row */}
 					<Grid container item direction="row">
 						<Grid item xs={12} sm={6}>
-							<Box p={3}>
-								<Typography variant="h5" component="h3">
-									Description
-								</Typography>
-								<Typography variant="body1" component="h2">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-									Repellendus blanditiis quas sunt doloremque dignissimos
-									repellat nisi, praesentium distinctio quia quidem corrupti
-									consectetur ex tempora tempore aperiam laboriosam mollitia
-									ducimus nesciunt!
-								</Typography>
-							</Box>
+							<ProductDescription />
 						</Grid>
 						<Grid item xs={12} sm={6}>
-							<Box p={3}>
-								<Typography variant="h5">Delivery and Returns</Typography>
-								<Typography variant="body1" component="h2">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-									Repellendus blanditiis quas sunt doloremque dignissimos
-									repellat nisi, praesentium distinctio quia quidem corrupti
-									consectetur ex tempora tempore aperiam laboriosam mollitia
-									ducimus nesciunt!
-								</Typography>
-							</Box>
+							<ProductTabs />
 						</Grid>
 					</Grid>
 				</Grid>
