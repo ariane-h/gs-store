@@ -7,7 +7,7 @@ const ProductContextProvider = (props) => {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		const fetchData = async () => {
+		const fetchProducts = async () => {
 			const db = firebase.firestore();
 			return db.collection("products").onSnapshot((snapshot) => {
 				const productData = [];
@@ -17,7 +17,8 @@ const ProductContextProvider = (props) => {
 				setProducts(productData);
 			});
 		};
-		fetchData();
+
+		fetchProducts();
 	}, []);
 
 	return (
