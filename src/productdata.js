@@ -1,6 +1,6 @@
 export default [
 	{
-		id: 1,
+		id: "1",
 		title: "Cute Trainers",
 		price: "£50",
 		description:
@@ -9,7 +9,7 @@ export default [
 		imageUrl: "/img/muted-rainbow-trainers.jpg",
 	},
 	{
-		id: 2,
+		id: "2",
 		title: "Air Jordan Red",
 		price: "£100",
 		description:
@@ -18,7 +18,7 @@ export default [
 		imageUrl: "/img/airjordan-red.jpg",
 	},
 	{
-		id: 3,
+		id: "3",
 		title: "Nike Air Max",
 		price: "£60",
 		description:
@@ -27,7 +27,7 @@ export default [
 		imageUrl: "/img/nike-air-max.jpg",
 	},
 	{
-		id: 4,
+		id: "4",
 		title: "Green Suede Brogues",
 		price: "£70",
 		description:
@@ -36,7 +36,7 @@ export default [
 		imageUrl: "/img/green-brogues.jpg",
 	},
 	{
-		id: 5,
+		id: "5",
 		title: "Mint Flats",
 		price: "£80",
 		description:
@@ -45,7 +45,7 @@ export default [
 		imageUrl: "/img/mint-flats.jpg",
 	},
 	{
-		id: 6,
+		id: "6",
 		title: "Platform Sandals",
 		price: "£16",
 		description:

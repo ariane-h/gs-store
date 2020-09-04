@@ -10,9 +10,7 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 
-const ProductCard = (props) => {
-	const { title, subtitle, description, imageUrl } = props;
-
+const ProductCard = ({ product }) => {
 	const useStyles = makeStyles((theme) => ({
 		card: {
 			display: "flex",
@@ -29,13 +27,13 @@ const ProductCard = (props) => {
 				component="img"
 				alt="Contemplative Reptile"
 				height="300"
-				image={imageUrl}
-				title={title}
+				image={product.imageUrl}
+				title={product.title}
 			/>
-			<CardHeader title={title} subheader="price" />
+			<CardHeader title={product.title} subheader={product.price} />
 			<CardContent>
 				<Typography variant="body2" component="p">
-					{description}
+					{product.description}
 				</Typography>
 			</CardContent>
 			<CardActions>

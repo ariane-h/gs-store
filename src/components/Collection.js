@@ -2,17 +2,10 @@ import React, { useContext } from "react";
 import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Collection = () => {
 	const { products } = useContext(ProductContext);
-
-	const productCard = (product) => {
-		return (
-			<Grid container item xs={12} sm={4} key={product.id}>
-				<ProductCard {...product} />
-			</Grid>
-		);
-	};
 
 	return (
 		<>
@@ -27,14 +20,20 @@ const Collection = () => {
 				</Typography>
 			</Box>
 
-			<Grid container direction="row">
-				<Grid item sm={3}>
-					<h1>sidebar</h1>
-				</Grid>
-
-				<Grid container item spacing={3} sm={9}>
-					{products.map((product) => productCard(product))}
-				</Grid>
+			<Grid container direction="row" item sm={10} spacing={3}>
+				{products &&
+					products.map((product) => {
+						return (
+							<Grid container item xs={12} sm={4} key={product.id}>
+								<Link
+									to={`/products/${product.id}`}
+									style={{ textDecoration: "none" }}
+								>
+									<ProductCard product={product} key={product.id} />
+								</Link>
+							</Grid>
+						);
+					})}
 			</Grid>
 		</>
 	);

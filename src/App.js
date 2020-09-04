@@ -20,7 +20,7 @@ function App() {
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route path="/collections" component={Collection} />
-							<Route path="/product" component={Product} />
+							<Route path="/products/:id" component={Product} />
 						</Switch>
 					</ProductContextProvider>
 				</Grid>
