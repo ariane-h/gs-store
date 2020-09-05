@@ -1,13 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/ProductContext";
 import firebase from "../config/firebase";
-import { Grid, Typography, Button, Box, makeStyles } from "@material-ui/core";
+import {
+	Grid,
+	Typography,
+	Button,
+	Box,
+	makeStyles,
+	MenuItem,
+	InputLabel,
+	Select,
+	FormControl,
+} from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
+import ProductOptions from "./ProductOptions";
 
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
 	const [product, setProduct] = useState({});
+	const [sizeVariants, setSizeVariants] = useState([]);
 
 	const id = props.match.params.id;
 
@@ -27,7 +39,6 @@ const Product = (props) => {
 					.doc(id)
 					.collection("sizes")
 					.onSnapshot((snapshot) => {
-						// const sizeData = [];
 						snapshot.forEach((size) => sizeData.push({ ...size.data() }));
 					});
 				return sizeData;
@@ -39,33 +50,23 @@ const Product = (props) => {
 
 		//update the state
 		const updateProduct = async () => {
-			const productDetails = await fetchProduct();
-			const sizeVariants = await getSizeVariants();
+			const currentProduct = await fetchProduct();
+			const sizeVariantsValues = await getSizeVariants();
 
-			const productObj = {
-				...productDetails,
-				sizeVariants: sizeVariants,
-			};
-			setProduct(productObj);
-			return { productObj };
+			// const productObj = {
+			// 	...currentProduct,
+			// 	sizeVariants: sizeVariants,
+			// };
+
+			setProduct(currentProduct);
+			setSizeVariants(sizeVariantsValues);
+			return { currentProduct, sizeVariantsValues };
 		};
 
 		updateProduct();
 	}, [id, products]);
 
-	const useStyles = makeStyles((theme) => ({
-		formControl: {
-			margin: theme.spacing(1),
-			minWidth: 120,
-		},
-		selectEmpty: {
-			marginTop: theme.spacing(2),
-		},
-	}));
-
-	const classes = useStyles();
-
-	if (product) {
+	if (product && sizeVariants) {
 		return (
 			<>
 				<Grid container>
@@ -91,7 +92,11 @@ const Product = (props) => {
 								<Grid item>
 									<Typography variant="h5">{product.price}</Typography>
 								</Grid>
-								<Grid item>{/* SELECT SIZE */}</Grid>
+								<Grid item>
+									<Box>
+										<ProductOptions sizeVariants={sizeVariants} />
+									</Box>
+								</Grid>
 								<Grid item>
 									<Button variant="contained">Add to cart</Button>
 								</Grid>
