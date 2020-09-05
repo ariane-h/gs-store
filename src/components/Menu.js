@@ -10,8 +10,12 @@ const Menu = () => {
 					Home
 				</Button>
 
-				<Button color="inherit" component={NavLink} to="/collections">
-					Collections
+				<Button color="inherit" component={NavLink} to="/collections/women">
+					Womens
+				</Button>
+
+				<Button color="inherit" component={NavLink} to="/collections/men">
+					Mens
 				</Button>
 
 				<Button color="inherit" component={NavLink} to="/products/1">

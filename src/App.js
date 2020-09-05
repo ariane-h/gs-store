@@ -7,23 +7,27 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Grid } from "@material-ui/core";
 import ProductContextProvider from "./contexts/ProductContext";
+import CartContextProvider from "./contexts/CartContext";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<div className="app">
 				<Grid container direction="column" alignItems="center" justify="center">
-					<Grid item>
-						<Header />
-					</Grid>
-					<ProductContextProvider>
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<Route path="/collections" component={Collection} />
-							<Route path="/products/:id" component={Product} />
-						</Switch>
-					</ProductContextProvider>
+					<CartContextProvider>
+						<Grid item>
+							<Header />
+						</Grid>
+						<ProductContextProvider>
+							<Switch>
+								<Route exact path="/" component={Home} />
+								<Route path="/collections/:id" component={Collection} />
+								<Route path="/products/:id" component={Product} />
+							</Switch>
+						</ProductContextProvider>
+					</CartContextProvider>
 				</Grid>
+
 				<Footer />
 			</div>
 		</BrowserRouter>

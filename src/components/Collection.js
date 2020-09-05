@@ -3,31 +3,29 @@ import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import firebase from "../config/firebase";
 
-const Collection = () => {
+const Collection = (props) => {
 	const { products } = useContext(ProductContext);
-
+	const collectionId = props.match.params.id;
 	const [collectionProducts, setCollectionProducts] = useState([]);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const db = firebase.firestore();
-			return db
-				.collection("products")
-				.where("collections.women", "==", true)
-				.onSnapshot((snapshot) => {
-					const productData = [];
-					snapshot.forEach((product) =>
-						productData.push({ ...product.data(), id: product.id })
-					);
-					setCollectionProducts(productData);
-				});
+		const filterCollectionProducts = async () => {
+			const collectionProducts = products.filter(
+				(product) => collectionId && product.collections[collectionId]
+			);
+			return collectionProducts;
 		};
-		fetchData();
-	}, []);
 
-	// console.log(collectionProducts);
+		//update the state
+		const updateCollectionProducts = async () => {
+			const matchingProducts = await filterCollectionProducts();
+			setCollectionProducts(matchingProducts);
+			return { matchingProducts };
+		};
+
+		updateCollectionProducts();
+	}, [collectionId, products]);
 
 	return (
 		<>
@@ -43,8 +41,8 @@ const Collection = () => {
 			</Box>
 
 			<Grid container direction="row" item sm={10} spacing={3}>
-				{products &&
-					products.map((product) => {
+				{collectionProducts &&
+					collectionProducts.map((product) => {
 						return (
 							<Grid container item xs={12} sm={4} key={product.id}>
 								<Link

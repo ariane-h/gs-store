@@ -6,11 +6,10 @@ import * as serviceWorker from "./serviceWorker";
 import { CssBaseline } from "@material-ui/core";
 
 ReactDOM.render(
-	<React.StrictMode>
-		<CssBaseline>
-			<App />
-		</CssBaseline>
-	</React.StrictMode>,
+	<CssBaseline>
+		<App />
+	</CssBaseline>,
+
 	document.getElementById("root")
 );
 

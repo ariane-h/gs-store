@@ -1,17 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/ProductContext";
-import firebase from "../config/firebase";
-import {
-	Grid,
-	Typography,
-	Button,
-	Box,
-	makeStyles,
-	MenuItem,
-	InputLabel,
-	Select,
-	FormControl,
-} from "@material-ui/core";
+import { Grid, Typography, Button, Box } from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
@@ -19,54 +8,26 @@ import ProductOptions from "./ProductOptions";
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
 	const [product, setProduct] = useState({});
-	const [sizeVariants, setSizeVariants] = useState([]);
-
 	const id = props.match.params.id;
 
 	useEffect(() => {
-		//fetch a single product
+		//fetch a product
 		const fetchProduct = async () => {
 			const product = products.find((product) => product.id === id);
 			return product;
 		};
 
-		// fetch the size variants for the product
-		const getSizeVariants = async () => {
-			const fetchSizes = async () => {
-				const sizeData = [];
-				const db = firebase.firestore();
-				db.collection("products")
-					.doc(id)
-					.collection("sizes")
-					.onSnapshot((snapshot) => {
-						snapshot.forEach((size) => sizeData.push({ ...size.data() }));
-					});
-				return sizeData;
-			};
-
-			const sizes = await fetchSizes();
-			return sizes;
-		};
-
 		//update the state
 		const updateProduct = async () => {
 			const currentProduct = await fetchProduct();
-			const sizeVariantsValues = await getSizeVariants();
-
-			// const productObj = {
-			// 	...currentProduct,
-			// 	sizeVariants: sizeVariants,
-			// };
-
 			setProduct(currentProduct);
-			setSizeVariants(sizeVariantsValues);
-			return { currentProduct, sizeVariantsValues };
+			return { currentProduct };
 		};
 
 		updateProduct();
 	}, [id, products]);
 
-	if (product && sizeVariants) {
+	if (product) {
 		return (
 			<>
 				<Grid container>
@@ -90,11 +51,11 @@ const Product = (props) => {
 									</Typography>
 								</Grid>
 								<Grid item>
-									<Typography variant="h5">{product.price}</Typography>
+									<Typography variant="h5">{`£ ${product.price}`}</Typography>
 								</Grid>
 								<Grid item>
 									<Box>
-										<ProductOptions sizeVariants={sizeVariants} />
+										<ProductOptions sizeData={product.sizes} />
 									</Box>
 								</Grid>
 								<Grid item>

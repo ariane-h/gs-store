@@ -1,76 +1,64 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
 	MenuItem,
 	FormControl,
 	InputLabel,
 	Select,
 	makeStyles,
-	responsiveFontSizes,
+	Typography,
 } from "@material-ui/core";
 
-const ProductOptions = ({ sizeVariants }) => {
+const ProductOptions = ({ sizeData }) => {
 	const [selectedSize, setSelectedSize] = React.useState("");
-	const [sizes, setSizes] = React.useState([]);
-
-	useEffect(() => {
-		sizeVariants.length > 0 && setSizes(sizeVariants);
-	}, [sizeVariants]);
-
-	// const useStyles = makeStyles((theme) => ({
-	// 	formControl: {
-	// 		margin: theme.spacing(1),
-	// 		minWidth: 120,
-	// 	},
-	// 	selectEmpty: {
-	// 		marginTop: theme.spacing(2),
-	// 	},
-	// }));
 
 	const handleChange = (event) => {
 		setSelectedSize(event.target.value);
 	};
 
-	// const sizeMenuItem = (sizeOption, index) => {
-	// 	if (sizeOption.qty > 0) {
-	// 		return (
-	// 			<MenuItem key={index} value={sizeOption.title}>
-	// 				<em>{sizeOption.title}</em>
-	// 			</MenuItem>
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<MenuItem disabled={true} key={index} value={sizeOption.title}>
-	// 				<em>{sizeOption.title}</em>
-	// 			</MenuItem>
-	// 		);
-	// 	}
-	// };
+	const sizeMenuItem = (sizeOption, i) => {
+		if (sizeOption.qty > 0) {
+			return (
+				<MenuItem key={i} value={sizeOption.title}>
+					{sizeOption.title}
+				</MenuItem>
+			);
+		} else {
+			return (
+				<MenuItem disabled={true} key={i} value={sizeOption.title}>
+					{sizeOption.title}
+				</MenuItem>
+			);
+		}
+	};
 
-	// const classes = useStyles();
+	const useStyles = makeStyles((theme) => ({
+		formControl: {
+			margin: theme.spacing(1),
+			minWidth: 120,
+		},
+	}));
 
-	if (sizes.length > 0) {
+	const classes = useStyles();
+
+	if (sizeData) {
 		return (
 			<div>
-				<FormControl variant="outlined">
+				<FormControl variant="outlined" className={classes.formControl}>
 					<InputLabel id="sizeVariants">Size</InputLabel>
 					<Select
 						labelId="demo-simple-select-outlined-label"
 						id="demo-simple-select-outlined"
 						value={selectedSize}
-						onChange={(e) => handleChange(e)}
+						onChange={handleChange}
 						label="Size"
 					>
-						{sizes.map((sizeOption, i) => (
-							<MenuItem key={i} value={sizeOption.title}>
-								{sizeOption.title}
-							</MenuItem>
-						))}
+						{sizeData.map((sizeOption, i) => sizeMenuItem(sizeOption, i))}
 					</Select>
 				</FormControl>
 			</div>
 		);
 	} else {
-		return "loading";
+		return <Typography variant="h2">Out of Stock</Typography>;
 	}
 };
 
