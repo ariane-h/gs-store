@@ -4,6 +4,8 @@ import { CartContext } from "../contexts/CartContext";
 import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import CheckoutButton from "./CheckoutButton";
+import CartTotal from "./CartTotal";
 
 const Cart = () => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -41,14 +43,25 @@ const Cart = () => {
 	} else {
 		return (
 			<>
-				<Grid container item xs={12} alignItems="center" justify="center">
-					<Box mt={3} mb={5}>
-						<Typography variant="h5" component="h1">
-							Cart
-						</Typography>
-					</Box>
+				<Grid
+					container
+					item
+					xs={12}
+					alignItems="center"
+					justify="center"
+					direction="column"
+				>
+					{/* row one */}
 
-					<Grid container>
+					<Grid item xs={12}>
+						<Box mt={3} mb={5}>
+							<Typography variant="h5" component="h1">
+								Cart
+							</Typography>
+						</Box>
+					</Grid>
+
+					<Grid container xs={12}>
 						<Grid item xs={false} sm={1}></Grid>
 
 						<Grid container item spacing={3} sm={10}>
@@ -77,6 +90,7 @@ const Cart = () => {
 											key={lineItem.sku}
 											justify="center"
 											alignItems="center"
+											textalign="center"
 										>
 											<Grid item xs={2}>
 												<Typography variant="body1">
@@ -92,10 +106,11 @@ const Cart = () => {
 												<Typography variant="body1">{lineItem.size}</Typography>
 											</Grid>
 											<Grid item xs={2}>
-												<Box display="flex" alignItems="center">
-													<Typography variant="body1">
-														{lineItem.orderQty}
-													</Typography>
+												<Box
+													display="flex"
+													justify="center"
+													alignItems="center"
+												>
 													<IconButton
 														aria-label="add"
 														onClick={() =>
@@ -106,29 +121,33 @@ const Cart = () => {
 															)
 														}
 													>
-														<AddIcon />
+														<AddIcon fontSize="small" />
 													</IconButton>
+													<Typography variant="body1">
+														{lineItem.orderQty}
+													</Typography>
 													<IconButton
 														aria-label="remove"
 														onClick={() =>
 															handleDecreaseQty(lineItem.sku, lineItem.orderQty)
 														}
 													>
-														<RemoveIcon />
+														<RemoveIcon fontSize="small" />
 													</IconButton>
 												</Box>
 											</Grid>
 											<Grid item xs={2}>
 												<Typography variant="body1">
-													{lineItem.price}
+													{`£${lineItem.price}`}
 												</Typography>
 											</Grid>
+
 											<Grid item xs={2}>
 												<IconButton
 													aria-label="delete"
 													onClick={() => handleDelete(lineItem.sku)}
 												>
-													<ClearIcon />
+													<ClearIcon fontSize="small" />
 												</IconButton>
 											</Grid>
 										</Grid>
@@ -137,6 +156,23 @@ const Cart = () => {
 						</Grid>
 
 						<Grid item xs={false} sm={1}></Grid>
+					</Grid>
+
+					<Grid container item direction="column" xs={12}>
+						<Grid container item>
+							<Grid item xs={6}></Grid>
+							<Grid container item xs={6}>
+								<Box mt={10}>{cart && <CartTotal cartItems={cart} />}</Box>
+							</Grid>
+						</Grid>
+						<Grid container item>
+							<Grid item xs={6}></Grid>
+							<Grid item xs={6}>
+								<Box>
+									<CheckoutButton />
+								</Box>
+							</Grid>
+						</Grid>
 					</Grid>
 				</Grid>
 			</>

@@ -6,8 +6,6 @@ const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
 	const { selectedSize, product, availableQty } = props;
 
-	console.log(availableQty);
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!selectedSize) {
