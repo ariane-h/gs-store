@@ -25,6 +25,10 @@ const AddToCartButton = (props) => {
 					id: product.id,
 					sku: selectedSize.sku,
 					orderQty: 1,
+					imageUrl: product.imageUrl,
+					size: selectedSize.title,
+					price: product.price,
+					title: product.title,
 				},
 			});
 		} else {

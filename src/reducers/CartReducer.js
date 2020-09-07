@@ -7,6 +7,10 @@ export const cartReducer = (state, action) => {
 					id: action.cartItem.id,
 					sku: action.cartItem.sku,
 					orderQty: action.cartItem.orderQty,
+					imageUrl: action.cartItem.imageUrl,
+					size: action.cartItem.size,
+					price: action.cartItem.price,
+					title: action.cartItem.title,
 				},
 			];
 		case "INCREASE_QTY":

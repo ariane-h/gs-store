@@ -18,8 +18,8 @@ const Menu = () => {
 					Mens
 				</Button>
 
-				<Button color="inherit" component={NavLink} to="/products/1">
-					Product Page
+				<Button color="inherit" component={NavLink} to="/cart">
+					Cart
 				</Button>
 			</>
 		</Toolbar>
