@@ -1,10 +1,24 @@
 import React, { useContext } from "react";
 import { Typography, Grid, Box, IconButton } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
-import DeleteIcon from "@material-ui/icons/Delete";
+import ClearIcon from "@material-ui/icons/Clear";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 const Cart = () => {
 	const { cart, dispatch } = useContext(CartContext);
+
+	const handleIncreaseQty = (sku, orderQty, availableQty) => {
+		if (orderQty < availableQty) {
+			dispatch({ type: "INCREASE_QTY", sku });
+		} else {
+			alert(`only ${availableQty} available`);
+		}
+	};
+
+	const handleDecreaseQty = (sku, orderQty) => {
+		orderQty > 1 ? dispatch({ type: "DECREASE_QTY", sku }) : handleDelete(sku);
+	};
 
 	const handleDelete = (sku) => {
 		dispatch({ type: "REMOVE_FROM_CART", sku });
@@ -41,16 +55,16 @@ const Cart = () => {
 							<Grid container direction="row">
 								<Grid item xs={2}></Grid>
 								<Grid item xs={2}>
-									Title
+									<Typography variant="subtitle1">Product</Typography>
 								</Grid>
 								<Grid item xs={2}>
-									Size
+									<Typography variant="subtitle1">Size</Typography>
 								</Grid>
 								<Grid item xs={2}>
-									Quantity
+									<Typography variant="subtitle1">Qty</Typography>
 								</Grid>
 								<Grid item xs={2}>
-									Price
+									<Typography variant="subtitle1">Price</Typography>
 								</Grid>
 							</Grid>
 
@@ -78,9 +92,31 @@ const Cart = () => {
 												<Typography variant="body1">{lineItem.size}</Typography>
 											</Grid>
 											<Grid item xs={2}>
-												<Typography variant="body1">
-													{lineItem.orderQty}
-												</Typography>
+												<Box display="flex" alignItems="center">
+													<Typography variant="body1">
+														{lineItem.orderQty}
+													</Typography>
+													<IconButton
+														aria-label="add"
+														onClick={() =>
+															handleIncreaseQty(
+																lineItem.sku,
+																lineItem.orderQty,
+																lineItem.availableQty
+															)
+														}
+													>
+														<AddIcon />
+													</IconButton>
+													<IconButton
+														aria-label="remove"
+														onClick={() =>
+															handleDecreaseQty(lineItem.sku, lineItem.orderQty)
+														}
+													>
+														<RemoveIcon />
+													</IconButton>
+												</Box>
 											</Grid>
 											<Grid item xs={2}>
 												<Typography variant="body1">
@@ -92,7 +128,7 @@ const Cart = () => {
 													aria-label="delete"
 													onClick={() => handleDelete(lineItem.sku)}
 												>
-													<DeleteIcon />
+													<ClearIcon />
 												</IconButton>
 											</Grid>
 										</Grid>

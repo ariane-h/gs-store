@@ -11,6 +11,7 @@ export const cartReducer = (state, action) => {
 					size: action.cartItem.size,
 					price: action.cartItem.price,
 					title: action.cartItem.title,
+					availableQty: action.cartItem.availableQty,
 				},
 			];
 		case "INCREASE_QTY":
@@ -24,7 +25,7 @@ export const cartReducer = (state, action) => {
 			const productToDecrease = state.find(
 				(product) => product.sku === action.sku
 			);
-			productToDecrease.orderQty += 1;
+			productToDecrease.orderQty -= 1;
 			return [...state];
 
 		case "REMOVE_FROM_CART":

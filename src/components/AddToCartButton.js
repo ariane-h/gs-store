@@ -4,7 +4,9 @@ import { CartContext } from "../contexts/CartContext";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
-	const { selectedSize, product } = props;
+	const { selectedSize, product, availableQty } = props;
+
+	console.log(availableQty);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -29,6 +31,7 @@ const AddToCartButton = (props) => {
 					size: selectedSize.title,
 					price: product.price,
 					title: product.title,
+					availableQty: availableQty,
 				},
 			});
 		} else {
@@ -37,8 +40,6 @@ const AddToCartButton = (props) => {
 				sku: productInCart.sku,
 			});
 		}
-
-		// else increase quantity
 	};
 
 	return (

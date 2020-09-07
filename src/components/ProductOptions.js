@@ -50,10 +50,10 @@ const ProductOptions = ({ product, sizeData }) => {
 				<Grid item>
 					<Box>
 						<FormControl variant="outlined" className={classes.formControl}>
-							<InputLabel id="sizeVariants">Size</InputLabel>
+							<InputLabel id="select-size">Size</InputLabel>
 							<Select
-								labelId="demo-simple-select-outlined-label"
-								id="demo-simple-select-outlined"
+								labelId="select-size"
+								id="select-size"
 								value={selectedSize}
 								onChange={handleChange}
 								label="Size"
@@ -64,7 +64,11 @@ const ProductOptions = ({ product, sizeData }) => {
 					</Box>
 				</Grid>
 				<Grid item>
-					<AddToCartButton product={product} selectedSize={selectedSize} />
+					<AddToCartButton
+						product={product}
+						selectedSize={selectedSize}
+						availableQty={selectedSize.qty}
+					/>
 				</Grid>
 			</div>
 		);
