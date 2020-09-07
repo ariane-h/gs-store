@@ -1,14 +1,21 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/ProductContext";
-import { Grid, Typography, Button, Box } from "@material-ui/core";
+import { Grid, Typography, Box } from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
 
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
-	const [product, setProduct] = useState({});
 	const id = props.match.params.id;
+	const [product, setProduct] = useState({
+		title: "",
+		price: "",
+		imageUrl: "",
+		id: "",
+		description: "",
+		sizes: [],
+	});
 
 	useEffect(() => {
 		//fetch a product
@@ -20,14 +27,16 @@ const Product = (props) => {
 		//update the state
 		const updateProduct = async () => {
 			const currentProduct = await fetchProduct();
-			setProduct(currentProduct);
+			setProduct({ ...currentProduct });
 			return { currentProduct };
 		};
 
 		updateProduct();
 	}, [id, products]);
 
-	if (product) {
+	if (!product) {
+		return null;
+	} else {
 		return (
 			<>
 				<Grid container>
@@ -53,14 +62,8 @@ const Product = (props) => {
 								<Grid item>
 									<Typography variant="h5">{`£ ${product.price}`}</Typography>
 								</Grid>
-								<Grid item>
-									<Box>
-										<ProductOptions sizeData={product.sizes} />
-									</Box>
-								</Grid>
-								<Grid item>
-									<Button variant="contained">Add to cart</Button>
-								</Grid>
+
+								<ProductOptions product={product} sizeData={product.sizes} />
 							</Grid>
 						</Grid>
 
@@ -78,8 +81,6 @@ const Product = (props) => {
 				</Grid>
 			</>
 		);
-	} else {
-		return "loading";
 	}
 };
 

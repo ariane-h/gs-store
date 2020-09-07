@@ -5,27 +5,13 @@ import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const Collection = (props) => {
-	const { products } = useContext(ProductContext);
+	const { filterCollectionProducts } = useContext(ProductContext);
 	const collectionId = props.match.params.id;
 	const [collectionProducts, setCollectionProducts] = useState([]);
 
 	useEffect(() => {
-		const filterCollectionProducts = async () => {
-			const collectionProducts = products.filter(
-				(product) => collectionId && product.collections[collectionId]
-			);
-			return collectionProducts;
-		};
-
-		//update the state
-		const updateCollectionProducts = async () => {
-			const matchingProducts = await filterCollectionProducts();
-			setCollectionProducts(matchingProducts);
-			return { matchingProducts };
-		};
-
-		updateCollectionProducts();
-	}, [collectionId, products]);
+		filterCollectionProducts(collectionId, setCollectionProducts);
+	}, [collectionId, filterCollectionProducts]);
 
 	return (
 		<>

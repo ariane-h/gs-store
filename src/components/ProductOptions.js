@@ -5,10 +5,12 @@ import {
 	InputLabel,
 	Select,
 	makeStyles,
-	Typography,
+	Grid,
+	Box,
 } from "@material-ui/core";
+import AddToCartButton from "./AddToCartButton";
 
-const ProductOptions = ({ sizeData }) => {
+const ProductOptions = ({ product, sizeData }) => {
 	const [selectedSize, setSelectedSize] = React.useState("");
 
 	const handleChange = (event) => {
@@ -18,13 +20,13 @@ const ProductOptions = ({ sizeData }) => {
 	const sizeMenuItem = (sizeOption, i) => {
 		if (sizeOption.qty > 0) {
 			return (
-				<MenuItem key={i} value={sizeOption.title}>
+				<MenuItem key={i} value={sizeOption}>
 					{sizeOption.title}
 				</MenuItem>
 			);
 		} else {
 			return (
-				<MenuItem disabled={true} key={i} value={sizeOption.title}>
+				<MenuItem disabled={true} key={i} value={sizeOption}>
 					{sizeOption.title}
 				</MenuItem>
 			);
@@ -40,25 +42,32 @@ const ProductOptions = ({ sizeData }) => {
 
 	const classes = useStyles();
 
-	if (sizeData) {
+	if (!sizeData) {
+		return null;
+	} else {
 		return (
 			<div>
-				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel id="sizeVariants">Size</InputLabel>
-					<Select
-						labelId="demo-simple-select-outlined-label"
-						id="demo-simple-select-outlined"
-						value={selectedSize}
-						onChange={handleChange}
-						label="Size"
-					>
-						{sizeData.map((sizeOption, i) => sizeMenuItem(sizeOption, i))}
-					</Select>
-				</FormControl>
+				<Grid item>
+					<Box>
+						<FormControl variant="outlined" className={classes.formControl}>
+							<InputLabel id="sizeVariants">Size</InputLabel>
+							<Select
+								labelId="demo-simple-select-outlined-label"
+								id="demo-simple-select-outlined"
+								value={selectedSize}
+								onChange={handleChange}
+								label="Size"
+							>
+								{sizeData.map((sizeOption, i) => sizeMenuItem(sizeOption, i))}
+							</Select>
+						</FormControl>
+					</Box>
+				</Grid>
+				<Grid item>
+					<AddToCartButton product={product} selectedSize={selectedSize} />
+				</Grid>
 			</div>
 		);
-	} else {
-		return <Typography variant="h2">Out of Stock</Typography>;
 	}
 };
 
