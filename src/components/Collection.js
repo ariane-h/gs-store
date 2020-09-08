@@ -35,7 +35,11 @@ const Collection = (props) => {
 									to={`/products/${product.id}`}
 									style={{ textDecoration: "none" }}
 								>
-									<ProductCard product={product} key={product.id} />
+									<ProductCard
+										product={product}
+										key={product.id}
+										imageUrl={product.imageUrl}
+									/>
 								</Link>
 							</Grid>
 						);

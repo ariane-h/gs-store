@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Card,
 	CardHeader,
@@ -9,8 +9,16 @@ import {
 	Button,
 	makeStyles,
 } from "@material-ui/core";
+import firebase from "../config/firebase";
+import { getFirebaseImage } from "../helpers/images/imageHelpers";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, imageUrl }) => {
+	const [productImg, setProductImg] = useState("");
+
+	useEffect(() => {
+		getFirebaseImage(imageUrl, firebase, setProductImg);
+	}, [imageUrl]);
+
 	const useStyles = makeStyles((theme) => ({
 		card: {
 			display: "flex",
@@ -27,7 +35,7 @@ const ProductCard = ({ product }) => {
 				component="img"
 				alt="Contemplative Reptile"
 				height="300"
-				image={product.imageUrl}
+				image={productImg}
 				title={product.title}
 			/>
 			<CardHeader title={product.title} subheader={product.price} />

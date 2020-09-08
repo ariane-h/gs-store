@@ -4,6 +4,7 @@ import { Grid, Typography, Box } from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
+import ProductImg from "./ProductImg";
 
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
@@ -46,11 +47,7 @@ const Product = (props) => {
 						<Grid container item direction="row">
 							<Grid item sm={6}>
 								<Box>
-									<img
-										src="https://via.placeholder.com/800"
-										height="440"
-										alt=""
-									/>
+									<ProductImg imageUrl={product.imageUrl} />
 								</Box>
 							</Grid>
 							<Grid container item direction="column" sm={6} spacing={4}>

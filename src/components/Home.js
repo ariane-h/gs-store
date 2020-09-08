@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import { Box } from "@material-ui/core";
-import firebase from "firebase";
+import React from "react";
+// import firebase from "../config/firebase";
 
 const Home = () => {
-	const [imageUrl, setImageUrl] = useState("");
+	// const [heroImg, setHeroImg] = useState("");
 
-	const getImage = () => {
-		var storage = firebase.storage();
-		var gsReference = storage.refFromURL(
-			"gs://shoe-shop-f5df2.appspot.com/nike-air-max.jpg"
-		);
+	// useEffect(() => {
+	// 	const loadImage = () => {
+	// 		var storage = firebase.storage();
+	// 		var gsReference = storage.refFromURL(
+	// 			"gs://shoe-shop-f5df2.appspot.com/nike-air-max.jpg"
+	// 		);
 
-		gsReference
-			.getDownloadURL()
-			.then((url) => {
-				setImageUrl(url);
-			})
-			.catch((err) => console.log(err));
-	};
+	// 		gsReference
+	// 			.getDownloadURL()
+	// 			.then((url) => {
+	// 				setHeroImg(url);
+	// 			})
+	// 			.catch((err) => console.log(err));
+	// 	};
 
-	getImage();
+	// 	loadImage();
+	// }, []);
 
 	return (
 		<>
-			<Box>
-				<img src={imageUrl} alt="" />
-			</Box>
+			<h1>home page</h1>
 		</>
 	);
 };
