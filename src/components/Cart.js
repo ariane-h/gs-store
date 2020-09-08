@@ -27,10 +27,6 @@ const Cart = () => {
 		dispatch({ type: "REMOVE_FROM_CART", sku });
 	};
 
-	const generateImage = (imageUrl) => {
-		console.log(imageUrl);
-	};
-
 	if (!cart.length) {
 		return (
 			<div>
@@ -56,8 +52,6 @@ const Cart = () => {
 					justify="center"
 					direction="column"
 				>
-					{/* row one */}
-
 					<Grid item xs={12}>
 						<Box mt={3} mb={5}>
 							<Typography variant="h5" component="h1">
