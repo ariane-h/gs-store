@@ -6,6 +6,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import CheckoutButton from "./CheckoutButton";
 import CartTotal from "./CartTotal";
+import CartProductImg from "./CartProductImg";
 
 const Cart = () => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -24,6 +25,10 @@ const Cart = () => {
 
 	const handleDelete = (sku) => {
 		dispatch({ type: "REMOVE_FROM_CART", sku });
+	};
+
+	const generateImage = (imageUrl) => {
+		console.log(imageUrl);
 	};
 
 	if (!cart.length) {
@@ -61,7 +66,7 @@ const Cart = () => {
 						</Box>
 					</Grid>
 
-					<Grid container xs={12}>
+					<Grid container item xs={12}>
 						<Grid item xs={false} sm={1}></Grid>
 
 						<Grid container item spacing={3} sm={10}>
@@ -93,9 +98,10 @@ const Cart = () => {
 											textalign="center"
 										>
 											<Grid item xs={2}>
-												<Typography variant="body1">
-													{lineItem.imageUrl}
-												</Typography>
+												<CartProductImg
+													imageUrl={lineItem.imageUrl}
+													altText={lineItem.title}
+												/>
 											</Grid>
 											<Grid item xs={2}>
 												<Typography variant="body1">
