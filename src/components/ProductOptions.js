@@ -5,7 +5,6 @@ import {
 	InputLabel,
 	Select,
 	makeStyles,
-	Grid,
 	Box,
 } from "@material-ui/core";
 import AddToCartButton from "./AddToCartButton";
@@ -35,7 +34,6 @@ const ProductOptions = ({ product, sizeData }) => {
 
 	const useStyles = makeStyles((theme) => ({
 		formControl: {
-			margin: theme.spacing(1),
 			minWidth: 120,
 		},
 	}));
@@ -46,9 +44,9 @@ const ProductOptions = ({ product, sizeData }) => {
 		return null;
 	} else {
 		return (
-			<div>
-				<Grid item>
-					<Box>
+			<>
+				<Box height="80%" pt={2}>
+					<Box height="50%">
 						<FormControl variant="outlined" className={classes.formControl}>
 							<InputLabel id="select-size">Size</InputLabel>
 							<Select
@@ -62,15 +60,16 @@ const ProductOptions = ({ product, sizeData }) => {
 							</Select>
 						</FormControl>
 					</Box>
-				</Grid>
-				<Grid item>
-					<AddToCartButton
-						product={product}
-						selectedSize={selectedSize}
-						availableQty={selectedSize.qty}
-					/>
-				</Grid>
-			</div>
+
+					<Box height="50%">
+						<AddToCartButton
+							product={product}
+							selectedSize={selectedSize}
+							availableQty={selectedSize.qty}
+						/>
+					</Box>
+				</Box>
+			</>
 		);
 	}
 };

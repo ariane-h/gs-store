@@ -3,44 +3,36 @@ import { Typography, Divider, Box } from "@material-ui/core";
 
 const DeliveryTabContent = () => {
 	return (
-		<div>
+		<>
 			<Box pb={2}>
 				<Typography variant="body1" gutterBottom>
-					<Box fontWeight="fontWeightMedium" m={1}>
-						UK Standard Delivery
-					</Box>
+					UK Standard Delivery
 				</Typography>
-
 				<Typography variant="body1" gutterBottom>
-					£3.50 or FREE on full price items.
+					£3.50 or FREE on full price items
 				</Typography>
 				<Typography variant="body1" gutterBottom>
 					Delivery within 3-5 working days
 				</Typography>
+				<Divider />
 			</Box>
-			<Divider />
 
 			<Box pb={2}>
 				<Typography variant="body1" gutterBottom>
-					<Box fontWeight="fontWeightMedium" m={1}>
-						Next Day Delivery
-					</Box>
+					Next Day Delivery
 				</Typography>
-
 				<Typography variant="body1" gutterBottom>
 					£6 or FREE on orders over £80
 				</Typography>
 				<Typography variant="body1" gutterBottom>
 					Order by 5pm Mon-Fri
 				</Typography>
+				<Divider />
 			</Box>
-			<Divider />
 
 			<Box pb={2}>
 				<Typography variant="body1" gutterBottom>
-					<Box fontWeight="fontWeightMedium" m={1}>
-						International Delivery
-					</Box>
+					International Delivery Cost dependant on country
 				</Typography>
 
 				<Typography variant="body1" gutterBottom>
@@ -49,9 +41,10 @@ const DeliveryTabContent = () => {
 				<Typography variant="body1" gutterBottom>
 					International Standard Delivery within 5-10 working days
 				</Typography>
+
+				<Divider />
 			</Box>
-			<Divider />
-		</div>
+		</>
 	);
 };
 

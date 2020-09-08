@@ -51,18 +51,20 @@ const Product = (props) => {
 								</Box>
 							</Grid>
 							<Grid item sm={6}>
-								<Box height="100%" width="100%">
-									<Box height="50%">
-										<Typography variant="h4" component="h1" gutterBottom>
-											{product.title}
-										</Typography>
+								<Box height="70%" width="100%">
+									<Box height="30%">
+										<Box mt={6}>
+											<Typography variant="h4" component="h1" gutterBottom>
+												{product.title}
+											</Typography>
 
-										<Typography variant="h5" gutterBottom>
-											{product.price && `£ ${product.price.toFixed(2)}`}
-										</Typography>
+											<Typography variant="h5" gutterBottom>
+												{product.price && `£ ${product.price.toFixed(2)}`}
+											</Typography>
+										</Box>
 									</Box>
 
-									<Box height="50%">
+									<Box height="70%">
 										<ProductOptions
 											product={product}
 											sizeData={product.sizes}

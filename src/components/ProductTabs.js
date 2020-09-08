@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,11 +21,7 @@ const ProductTabs = () => {
 				aria-labelledby={`tab-${index}`}
 				{...other}
 			>
-				{value === index && (
-					<Box p={3}>
-						<Typography>{children}</Typography>
-					</Box>
-				)}
+				{value === index && <Box p={3}>{children}</Box>}
 			</div>
 		);
 	}
