@@ -138,7 +138,7 @@ const Cart = () => {
 											</Grid>
 											<Grid item xs={2}>
 												<Typography variant="body1">
-													{`£${lineItem.price}`}
+													{`£${lineItem.price.toFixed(2)}`}
 												</Typography>
 											</Grid>
 

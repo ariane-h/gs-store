@@ -50,17 +50,25 @@ const Product = (props) => {
 									<ProductImg imageUrl={product.imageUrl} />
 								</Box>
 							</Grid>
-							<Grid container item direction="column" sm={6} spacing={4}>
-								<Grid item>
-									<Typography variant="h4" component="h1">
-										{product.title}
-									</Typography>
-								</Grid>
-								<Grid item>
-									<Typography variant="h5">{`£ ${product.price}`}</Typography>
-								</Grid>
+							<Grid item sm={6}>
+								<Box height="50%" width="100%">
+									<Box height="50%">
+										<Typography variant="h4" component="h1" gutterBottom>
+											{product.title}
+										</Typography>
 
-								<ProductOptions product={product} sizeData={product.sizes} />
+										<Typography variant="h5">
+											{product.price && `£ ${product.price.toFixed(2)}`}
+										</Typography>
+									</Box>
+
+									<Box height="50%">
+										<ProductOptions
+											product={product}
+											sizeData={product.sizes}
+										/>
+									</Box>
+								</Box>
 							</Grid>
 						</Grid>
 

@@ -44,7 +44,10 @@ const ProductCard = ({ product, imageUrl }) => {
 				<Skeleton variant="rect" width={375} height={300} />
 			)}
 
-			<CardHeader title={product.title} subheader={product.price} />
+			<CardHeader
+				title={product.title}
+				subheader={`£${product.price.toFixed(2)}`}
+			/>
 			<CardContent>
 				<Typography variant="body2" component="p">
 					{product.description}

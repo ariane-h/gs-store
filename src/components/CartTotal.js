@@ -30,14 +30,14 @@ const CartTotal = ({ cartItems }) => {
 	return (
 		<>
 			<Typography variant="body1" gutterBottom>
-				Subtotal: £{`${subtotal}`}
+				Subtotal: £{`${subtotal.toFixed(2)}`}
 			</Typography>
 			<Typography variant="body1" gutterBottom>
 				Delivery: FREE
 			</Typography>
 
 			<Typography variant="h6" gutterBottom>
-				Total: £{`${total}`}
+				Total: £{`${total.toFixed(2)}`}
 			</Typography>
 		</>
 	);
