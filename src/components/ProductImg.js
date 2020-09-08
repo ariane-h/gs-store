@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../config/firebase";
+import { fetchImage } from "../helpers/images/imageHelpers";
 
 const ProductImg = ({ imageUrl }) => {
 	const [productImg, setProductImg] = useState("");
 
 	useEffect(() => {
-		if (imageUrl) {
-			const loadImage = () => {
-				var storage = firebase.storage();
-				var gsReference = storage.refFromURL(imageUrl);
-
-				gsReference
-					.getDownloadURL()
-					.then((url) => {
-						setProductImg(url);
-					})
-					.catch((err) => console.log(err));
-			};
-
-			loadImage();
-		}
+		fetchImage(firebase, imageUrl).then((url) => setProductImg(url));
 	}, [imageUrl]);
 
 	return (

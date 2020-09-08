@@ -10,13 +10,14 @@ import {
 	makeStyles,
 } from "@material-ui/core";
 import firebase from "../config/firebase";
-import { getFirebaseImage } from "../helpers/images/imageHelpers";
+import { fetchImage } from "../helpers/images/imageHelpers";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const ProductCard = ({ product, imageUrl }) => {
 	const [productImg, setProductImg] = useState("");
 
 	useEffect(() => {
-		getFirebaseImage(imageUrl, firebase, setProductImg);
+		fetchImage(firebase, imageUrl).then((url) => setProductImg(url));
 	}, [imageUrl]);
 
 	const useStyles = makeStyles((theme) => ({
@@ -31,13 +32,18 @@ const ProductCard = ({ product, imageUrl }) => {
 
 	return (
 		<Card className={classes.card}>
-			<CardMedia
-				component="img"
-				alt="Contemplative Reptile"
-				height="300"
-				image={productImg}
-				title={product.title}
-			/>
+			{productImg ? (
+				<CardMedia
+					component="img"
+					alt="Contemplative Reptile"
+					height="300"
+					image={productImg}
+					title={product.title}
+				/>
+			) : (
+				<Skeleton variant="rect" width={375} height={300} />
+			)}
+
 			<CardHeader title={product.title} subheader={product.price} />
 			<CardContent>
 				<Typography variant="body2" component="p">
