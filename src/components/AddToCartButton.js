@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Button, FormControl } from "@material-ui/core";
+import { Button, FormControl, Snackbar } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
 	const { selectedSize, product, availableQty } = props;
+	const [openSuccess, setOpenSuccess] = React.useState(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -38,7 +40,21 @@ const AddToCartButton = (props) => {
 				sku: productInCart.sku,
 			});
 		}
+
+		setOpenSuccess(true);
 	};
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpenSuccess(false);
+	};
+
+	function Alert(props) {
+		return <MuiAlert elevation={6} variant="filled" {...props} />;
+	}
 
 	return (
 		<div>
@@ -47,6 +63,16 @@ const AddToCartButton = (props) => {
 					Add to cart
 				</Button>
 			</FormControl>
+
+			<Snackbar
+				open={openSuccess}
+				autoHideDuration={2000}
+				onClose={handleClose}
+			>
+				<Alert onClose={handleClose} severity="success">
+					Added to Cart
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 };
