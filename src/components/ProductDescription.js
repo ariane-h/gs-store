@@ -5,7 +5,7 @@ const ProductDescription = () => {
 	return (
 		<>
 			<Box p={3}>
-				<Typography variant="h5" component="h3">
+				<Typography variant="h5" component="h3" gutterBottom>
 					Description
 				</Typography>
 				<Typography variant="body1" component="h2">

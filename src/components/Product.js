@@ -51,13 +51,13 @@ const Product = (props) => {
 								</Box>
 							</Grid>
 							<Grid item sm={6}>
-								<Box height="50%" width="100%">
+								<Box height="100%" width="100%">
 									<Box height="50%">
 										<Typography variant="h4" component="h1" gutterBottom>
 											{product.title}
 										</Typography>
 
-										<Typography variant="h5">
+										<Typography variant="h5" gutterBottom>
 											{product.price && `£ ${product.price.toFixed(2)}`}
 										</Typography>
 									</Box>
