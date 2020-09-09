@@ -7,6 +7,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import CheckoutButton from "./CheckoutButton";
 import CartTotal from "./CartTotal";
 import CartProductImg from "./CartProductImg";
+import CartEmpty from "./CartEmpty";
 
 const Cart = () => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -28,19 +29,7 @@ const Cart = () => {
 	};
 
 	if (!cart.length) {
-		return (
-			<div>
-				<Grid container>
-					<Grid item>
-						<Box mt={3} mb={5}>
-							<Typography variant="h5">
-								There's nothing in your cart yet
-							</Typography>
-						</Box>
-					</Grid>
-				</Grid>
-			</div>
-		);
+		return <CartEmpty />;
 	} else {
 		return (
 			<>
