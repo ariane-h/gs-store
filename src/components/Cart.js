@@ -36,9 +36,11 @@ const Cart = () => {
 				<Grid container>
 					<Grid item xs={false} sm={8}></Grid>
 					<Grid item xs={12} sm={4}>
-						<Box>
-							{cart && <CartTotal cartItems={cart} />}
-							<CheckoutButton />
+						<Box pt={2}>
+							<Box height="200px">{cart && <CartTotal cartItems={cart} />}</Box>
+							<Box>
+								<CheckoutButton />
+							</Box>
 						</Box>
 					</Grid>
 				</Grid>

@@ -1,10 +1,14 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 
 const CheckoutButton = () => {
 	return (
 		<>
-			<Button variant="contained">Checkout</Button>
+			<Box pt={2} pl={1}>
+				<Button variant="contained" color="primary" size="large">
+					Checkout
+				</Button>
+			</Box>
 		</>
 	);
 };
