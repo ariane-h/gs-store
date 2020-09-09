@@ -44,7 +44,7 @@ const MenuDropdown = ({ links }) => {
 		}
 	}
 
-	// return focus to the button when we transitioned from !open -> open
+	// returns focus to the button
 	const prevOpen = React.useRef(open);
 	React.useEffect(() => {
 		if (prevOpen.current === true && open === false) {
