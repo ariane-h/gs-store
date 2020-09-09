@@ -21,27 +21,8 @@ const ProductContextProvider = (props) => {
 		fetchProducts();
 	}, []);
 
-	// filter collection products
-	const filterCollectionProducts = (collectionId, setCollectionProducts) => {
-		const filterProducts = async () => {
-			const collectionProducts = products.filter(
-				(product) => collectionId && product.collections[collectionId]
-			);
-			return collectionProducts;
-		};
-
-		//update the state
-		const updateCollectionProducts = async () => {
-			const matchingProducts = await filterProducts();
-			setCollectionProducts(matchingProducts);
-			return { matchingProducts };
-		};
-
-		updateCollectionProducts();
-	};
-
 	return (
-		<ProductContext.Provider value={{ products, filterCollectionProducts }}>
+		<ProductContext.Provider value={{ products }}>
 			{props.children}
 		</ProductContext.Provider>
 	);

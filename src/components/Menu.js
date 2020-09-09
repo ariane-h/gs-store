@@ -8,7 +8,7 @@ const Menu = () => {
 		title: "Womens",
 		linkOne: "/collections/women",
 		linkOneTitle: "All Womens Shoes",
-		linkTwo: "/collections/women/trainers",
+		linkTwo: "/collections/women?s=trainers",
 		linkTwoTitle: "Trainers",
 		linkThree: "/collections/women/sandals",
 		linkThreeTitle: "Sandals",

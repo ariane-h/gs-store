@@ -54,82 +54,84 @@ const MenuDropdown = ({ links }) => {
 		prevOpen.current = open;
 	}, [open]);
 
-	return (
-		<>
-			<div className={classes.root}>
-				<div>
-					<Button
-						ref={anchorRef}
-						aria-controls={open ? "menu-list-grow" : undefined}
-						aria-haspopup="true"
-						onClick={handleToggle}
-					>
-						{links.title}
-					</Button>
-					<Popper
-						open={open}
-						anchorEl={anchorRef.current}
-						role={undefined}
-						transition
-						disablePortal
-					>
-						{({ TransitionProps, placement }) => (
-							<Grow
-								{...TransitionProps}
-								style={{
-									transformOrigin:
-										placement === "bottom" ? "center top" : "center bottom",
-								}}
-							>
-								<Paper>
-									<ClickAwayListener onClickAway={handleClose}>
-										<MenuList
-											autoFocusItem={open}
-											id="menu-list-grow"
-											onKeyDown={handleListKeyDown}
-										>
-											<MenuItem onClick={handleClose}>
-												<NavLink
-													to={links.linkOne}
-													style={{ textDecoration: "none" }}
-												>
-													{links.linkOneTitle}
-												</NavLink>
-											</MenuItem>
-											<MenuItem onClick={handleClose}>
-												<NavLink
-													to={links.linkTwo}
-													style={{ textDecoration: "none" }}
-												>
-													{links.linkTwoTitle}
-												</NavLink>
-											</MenuItem>
-											<MenuItem onClick={handleClose}>
-												<NavLink
-													to={links.linkThree}
-													style={{ textDecoration: "none" }}
-												>
-													{links.linkThreeTitle}
-												</NavLink>
-											</MenuItem>
-											<MenuItem onClick={handleClose}>
-												<NavLink
-													to={links.linkFour}
-													style={{ textDecoration: "none" }}
-												>
-													{links.linkFourTitle}
-												</NavLink>
-											</MenuItem>
-										</MenuList>
-									</ClickAwayListener>
-								</Paper>
-							</Grow>
-						)}
-					</Popper>
+	if (links) {
+		return (
+			<>
+				<div className={classes.root}>
+					<div>
+						<Button
+							ref={anchorRef}
+							aria-controls={open ? "menu-list-grow" : undefined}
+							aria-haspopup="true"
+							onClick={handleToggle}
+						>
+							{links.title}
+						</Button>
+						<Popper
+							open={open}
+							anchorEl={anchorRef.current}
+							role={undefined}
+							transition
+							disablePortal
+						>
+							{({ TransitionProps, placement }) => (
+								<Grow
+									{...TransitionProps}
+									style={{
+										transformOrigin:
+											placement === "bottom" ? "center top" : "center bottom",
+									}}
+								>
+									<Paper>
+										<ClickAwayListener onClickAway={handleClose}>
+											<MenuList
+												autoFocusItem={open}
+												id="menu-list-grow"
+												onKeyDown={handleListKeyDown}
+											>
+												<MenuItem onClick={handleClose}>
+													<NavLink
+														to={links.linkOne}
+														style={{ textDecoration: "none" }}
+													>
+														{links.linkOneTitle}
+													</NavLink>
+												</MenuItem>
+												<MenuItem onClick={handleClose}>
+													<NavLink
+														to={links.linkTwo}
+														style={{ textDecoration: "none" }}
+													>
+														{links.linkTwoTitle}
+													</NavLink>
+												</MenuItem>
+												<MenuItem onClick={handleClose}>
+													<NavLink
+														to={links.linkThree}
+														style={{ textDecoration: "none" }}
+													>
+														{links.linkThreeTitle}
+													</NavLink>
+												</MenuItem>
+												<MenuItem onClick={handleClose}>
+													<NavLink
+														to={links.linkFour}
+														style={{ textDecoration: "none" }}
+													>
+														{links.linkFourTitle}
+													</NavLink>
+												</MenuItem>
+											</MenuList>
+										</ClickAwayListener>
+									</Paper>
+								</Grow>
+							)}
+						</Popper>
+					</div>
 				</div>
-			</div>
-		</>
-	);
+			</>
+		);
+	}
 };
 
 export default MenuDropdown;

@@ -3,15 +3,26 @@ import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import {
+	filterCollectionProducts,
+	searchProductsByTitle,
+} from "../helpers/collections/collectionHelpers";
 
 const Collection = (props) => {
-	const { filterCollectionProducts } = useContext(ProductContext);
+	const { products } = useContext(ProductContext);
 	const collectionId = props.match.params.id;
 	const [collectionProducts, setCollectionProducts] = useState([]);
+	const searchParam = window.location.search;
+	const searchTerm = searchParam.slice(3, searchParam.length);
+
+	// testing collection filter
+	collectionProducts.length > 0 &&
+		searchTerm &&
+		console.log(searchProductsByTitle(searchTerm, collectionProducts));
 
 	useEffect(() => {
-		filterCollectionProducts(collectionId, setCollectionProducts);
-	}, [collectionId, filterCollectionProducts]);
+		filterCollectionProducts(collectionId, setCollectionProducts, products);
+	}, [collectionId, products]);
 
 	return (
 		<>

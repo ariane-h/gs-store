@@ -24,7 +24,9 @@ function App() {
 							<CartContextProvider>
 								<Switch>
 									<Route exact path="/" component={Home} />
+
 									<Route path="/collections/:id" component={Collection} />
+
 									<Route path="/products/:id" component={Product} />
 									<Route path="/cart" component={Cart} />
 								</Switch>
