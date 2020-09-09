@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import FitGuide from "./FitGuide";
+import ProductReviews from "./ProductReviews";
 
 const ProductDescription = () => {
 	return (
@@ -18,6 +19,8 @@ const ProductDescription = () => {
 			</Box>
 
 			<FitGuide />
+
+			<ProductReviews />
 		</>
 	);
 };
