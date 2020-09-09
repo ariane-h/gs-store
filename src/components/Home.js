@@ -22,7 +22,7 @@ const Home = () => {
 			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 			backgroundSize: "cover",
-			position: "relative",
+
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
