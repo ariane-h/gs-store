@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Button, FormControl, Snackbar } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
+import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -59,7 +60,13 @@ const AddToCartButton = (props) => {
 	return (
 		<div>
 			<FormControl variant="outlined" onClick={handleSubmit}>
-				<Button variant="contained" type="submit">
+				<Button
+					variant="contained"
+					type="submit"
+					color="primary"
+					endIcon={<ShoppingBasketIcon />}
+					size="large"
+				>
 					Add to cart
 				</Button>
 			</FormControl>

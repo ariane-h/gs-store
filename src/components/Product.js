@@ -7,6 +7,8 @@ import ProductOptions from "./ProductOptions";
 import ProductImg from "./ProductImg";
 import { fetchProduct } from "../helpers/products/productHelpers";
 
+import ProductSocialShareButtons from "./ProductSocialShareButtons";
+
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
 	const productId = props.match.params.id;
@@ -64,6 +66,7 @@ const Product = (props) => {
 											product={product}
 											sizeData={product.sizes}
 										/>
+										<ProductSocialShareButtons title={product.title} />
 									</Box>
 								</Box>
 							</Grid>
