@@ -23,7 +23,8 @@ const SearchBar = (props) => {
 			display: "flex",
 			alignItems: "center",
 			width: 250,
-			margin: "2px 10px",
+			margin: "8px 10px",
+			height: "40px",
 		},
 		input: {
 			marginLeft: theme.spacing(1),

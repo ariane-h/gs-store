@@ -13,9 +13,12 @@ import SearchBar from "./SearchBar";
 
 const TopNavBar = () => {
 	const useStyles = makeStyles((theme) => ({
-		appBar: {},
+		appBar: {
+			marginBottom: "20px",
+		},
 		toolbar: {
 			flexWrap: "wrap",
+			minHeight: "30px",
 		},
 		toolbarTitle: {
 			flexGrow: 1,
