@@ -12,7 +12,7 @@ const Footer = () => {
 		root: {
 			display: "flex",
 			flexDirection: "column",
-			minHeight: "80vh",
+			minHeight: "70vh",
 		},
 
 		footer: {

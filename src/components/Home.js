@@ -56,7 +56,7 @@ const Home = () => {
 			<div className={classes.root}>
 				<Grid container>
 					<Grid item xs={12} sm={4}>
-						<Link to="/collections/men" style={{ textDecoration: "none" }}>
+						<Link to="/collections/mens" style={{ textDecoration: "none" }}>
 							<img
 								className={classes.promo}
 								src="img/airjordan-red.jpg"
@@ -67,7 +67,7 @@ const Home = () => {
 						</Link>
 					</Grid>
 					<Grid item xs={12} sm={4}>
-						<Link to="/collections/women" style={{ textDecoration: "none" }}>
+						<Link to="/collections/womens" style={{ textDecoration: "none" }}>
 							<img
 								className={classes.promo}
 								src="img/mint-flats.jpg"
@@ -78,14 +78,17 @@ const Home = () => {
 						</Link>
 					</Grid>
 					<Grid item xs={12} sm={4}>
-						<Link to="/collections/women" style={{ textDecoration: "none" }}>
+						<Link
+							to="/collections/womens-trainers"
+							style={{ textDecoration: "none" }}
+						>
 							<img
 								className={classes.promo}
 								src="img/converse.jpg"
 								height="300"
 								alt=""
 							/>
-							<Typography variant="h5">Trainers</Typography>
+							<Typography variant="h5">Womens Trainers</Typography>
 						</Link>
 					</Grid>
 				</Grid>

@@ -21,6 +21,7 @@ const Collection = (props) => {
 		console.log(searchProductsByTitle(searchTerm, collectionProducts));
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		filterCollectionProducts(collectionId, setCollectionProducts, products);
 	}, [collectionId, products]);
 
