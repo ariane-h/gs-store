@@ -12,6 +12,7 @@ import CollectionContextProvider from "./contexts/CollectionContext";
 import Contact from "./components/Contact";
 
 import Cart from "./components/Cart";
+import SearchResults from "./components/SearchResults";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 										<Route path="/products/:id" component={Product} />
 										<Route path="/cart" component={Cart} />
 										<Route path="/contact" component={Contact} />
+										<Route path="/search" component={SearchResults} />
 									</Switch>
 								</CartContextProvider>
 							</CollectionContextProvider>
