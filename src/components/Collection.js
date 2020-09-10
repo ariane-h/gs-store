@@ -4,7 +4,7 @@ import { ProductContext } from "../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import {
-	filterCollectionProducts,
+	fetchCollectionProducts,
 	searchProductsByTitle,
 } from "../helpers/collections/collectionHelpers";
 
@@ -22,7 +22,18 @@ const Collection = (props) => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		filterCollectionProducts(collectionId, setCollectionProducts, products);
+
+		const loadCollectionProducts = async () => {
+			try {
+				await fetchCollectionProducts(collectionId, products).then((products) =>
+					setCollectionProducts(products)
+				);
+			} catch (err) {
+				console.log("error loading collection products", err);
+			}
+		};
+
+		loadCollectionProducts();
 	}, [collectionId, products]);
 
 	return (

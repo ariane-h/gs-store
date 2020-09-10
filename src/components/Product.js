@@ -5,10 +5,11 @@ import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
 import ProductImg from "./ProductImg";
+import { fetchProduct } from "../helpers/products/productHelpers";
 
 const Product = (props) => {
 	const { products } = useContext(ProductContext);
-	const id = props.match.params.id;
+	const productId = props.match.params.id;
 	const [product, setProduct] = useState({
 		title: "",
 		price: "",
@@ -19,21 +20,14 @@ const Product = (props) => {
 	});
 
 	useEffect(() => {
-		//fetch a product
-		const fetchProduct = async () => {
-			const product = products.find((product) => product.id === id);
-			return product;
-		};
-
-		//update the state
 		const updateProduct = async () => {
-			const currentProduct = await fetchProduct();
+			const currentProduct = await fetchProduct(products, productId);
 			setProduct({ ...currentProduct });
 			return { currentProduct };
 		};
 
 		updateProduct();
-	}, [id, products]);
+	}, [productId, products]);
 
 	if (!product) {
 		return null;

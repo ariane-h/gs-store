@@ -1,24 +1,9 @@
-// filter collection products
-export const filterCollectionProducts = (
-	collectionId,
-	setCollectionProducts,
-	products
-) => {
-	const filterProducts = async () => {
-		const collectionProducts = products.filter(
-			(product) => collectionId && product.collections[collectionId]
-		);
-		return collectionProducts;
-	};
-
-	//update the state
-	const updateCollectionProducts = async () => {
-		const matchingProducts = await filterProducts();
-		setCollectionProducts(matchingProducts);
-		return { matchingProducts };
-	};
-
-	updateCollectionProducts();
+// fetch products in a collection
+export const fetchCollectionProducts = async (collectionId, products) => {
+	const collectionProducts = await products.filter(
+		(product) => collectionId && product.collections[collectionId]
+	);
+	return collectionProducts;
 };
 
 // filter collection products by search term
