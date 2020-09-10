@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import { Grid } from "@material-ui/core";
 import ProductContextProvider from "./contexts/ProductContext";
 import CartContextProvider from "./contexts/CartContext";
+import CollectionContextProvider from "./contexts/CollectionContext";
+
 import Cart from "./components/Cart";
 
 function App() {
@@ -21,16 +23,18 @@ function App() {
 
 					<Grid container item direction="column">
 						<ProductContextProvider>
-							<CartContextProvider>
-								<Switch>
-									<Route exact path="/" component={Home} />
+							<CollectionContextProvider>
+								<CartContextProvider>
+									<Switch>
+										<Route exact path="/" component={Home} />
 
-									<Route path="/collections/:id" component={Collection} />
+										<Route path="/collections/:id" component={Collection} />
 
-									<Route path="/products/:id" component={Product} />
-									<Route path="/cart" component={Cart} />
-								</Switch>
-							</CartContextProvider>
+										<Route path="/products/:id" component={Product} />
+										<Route path="/cart" component={Cart} />
+									</Switch>
+								</CartContextProvider>
+							</CollectionContextProvider>
 						</ProductContextProvider>
 					</Grid>
 				</Grid>

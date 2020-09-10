@@ -20,6 +20,7 @@ const Product = (props) => {
 	});
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const updateProduct = async () => {
 			const currentProduct = await fetchProduct(products, productId);
 			setProduct({ ...currentProduct });

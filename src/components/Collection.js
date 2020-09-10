@@ -1,17 +1,26 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
+import { CollectionContext } from "../contexts/CollectionContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import {
 	fetchCollectionProducts,
 	searchProductsByTitle,
+	fetchCollectionDetails,
 } from "../helpers/collections/collectionHelpers";
 
 const Collection = (props) => {
 	const { products } = useContext(ProductContext);
+	const { collections } = useContext(CollectionContext);
 	const collectionId = props.match.params.id;
 	const [collectionProducts, setCollectionProducts] = useState([]);
+
+	const [collectionDetails, setCollectionDetails] = useState({
+		title: "",
+		description: "",
+	});
+
 	const searchParam = window.location.search;
 	const searchTerm = searchParam.slice(3, searchParam.length);
 
@@ -34,19 +43,30 @@ const Collection = (props) => {
 		};
 
 		loadCollectionProducts();
-	}, [collectionId, products]);
+
+		const updateCollectionDetails = async () => {
+			const currentCollection = await fetchCollectionDetails(
+				collections,
+				collectionId
+			);
+			setCollectionDetails({ ...currentCollection });
+			return { currentCollection };
+		};
+
+		updateCollectionDetails();
+	}, [collectionId, products, collections]);
 
 	return (
 		<>
 			<Grid container direction="column" alignItems="center">
 				<Box mt={3}>
 					<Typography variant="h5" component="h1">
-						Collection Title
+						{collectionDetails && collectionDetails.title}
 					</Typography>
 				</Box>
 				<Box mb={5}>
 					<Typography variant="subtitle1" component="h2">
-						Collection Description
+						{collectionDetails && collectionDetails.description}
 					</Typography>
 				</Box>
 

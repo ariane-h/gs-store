@@ -14,3 +14,8 @@ export const searchProductsByTitle = (searchTerm, collectionProducts) => {
 
 	return searchResults;
 };
+
+// fetch collection details
+export const fetchCollectionDetails = async (collections, collectionId) => {
+	return await collections.find((collection) => collection.id === collectionId);
+};
