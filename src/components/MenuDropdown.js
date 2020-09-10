@@ -89,38 +89,41 @@ const MenuDropdown = ({ links }) => {
 												id="menu-list-grow"
 												onKeyDown={handleListKeyDown}
 											>
-												<MenuItem onClick={handleClose}>
-													<NavLink
-														to={links.linkOne}
-														style={{ textDecoration: "none" }}
-													>
+												<NavLink
+													to={links.linkOne}
+													style={{ textDecoration: "none" }}
+												>
+													<MenuItem onClick={handleClose}>
 														{links.linkOneTitle}
-													</NavLink>
-												</MenuItem>
-												<MenuItem onClick={handleClose}>
-													<NavLink
-														to={links.linkTwo}
-														style={{ textDecoration: "none" }}
-													>
+													</MenuItem>
+												</NavLink>
+
+												<NavLink
+													to={links.linkTwo}
+													style={{ textDecoration: "none" }}
+												>
+													<MenuItem onClick={handleClose}>
 														{links.linkTwoTitle}
-													</NavLink>
-												</MenuItem>
-												<MenuItem onClick={handleClose}>
-													<NavLink
-														to={links.linkThree}
-														style={{ textDecoration: "none" }}
-													>
+													</MenuItem>
+												</NavLink>
+
+												<NavLink
+													to={links.linkThree}
+													style={{ textDecoration: "none" }}
+												>
+													<MenuItem onClick={handleClose}>
 														{links.linkThreeTitle}
-													</NavLink>
-												</MenuItem>
-												<MenuItem onClick={handleClose}>
-													<NavLink
-														to={links.linkFour}
-														style={{ textDecoration: "none" }}
-													>
+													</MenuItem>
+												</NavLink>
+
+												<NavLink
+													to={links.linkFour}
+													style={{ textDecoration: "none" }}
+												>
+													<MenuItem onClick={handleClose}>
 														{links.linkFourTitle}
-													</NavLink>
-												</MenuItem>
+													</MenuItem>
+												</NavLink>
 											</MenuList>
 										</ClickAwayListener>
 									</Paper>

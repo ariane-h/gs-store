@@ -6,25 +6,25 @@ import MenuDropdown from "./MenuDropdown";
 const Menu = () => {
 	const womensCollections = {
 		title: "Womens",
-		linkOne: "/collections/women",
+		linkOne: "/collections/womens",
 		linkOneTitle: "All Womens Shoes",
-		linkTwo: "/collections/women?s=trainers",
+		linkTwo: "/collections/womens-trainers",
 		linkTwoTitle: "Trainers",
-		linkThree: "/collections/women/sandals",
+		linkThree: "/collections/womens-sandals",
 		linkThreeTitle: "Sandals",
-		linkFour: "/collections/women/boots",
+		linkFour: "/collections/womens-boots",
 		linkFourTitle: "Boots",
 	};
 
 	const mensCollections = {
 		title: "Mens",
-		linkOne: "/collections/men",
+		linkOne: "/collections/mens",
 		linkOneTitle: "All Mens Shoes",
-		linkTwo: "/collections/men/trainers",
+		linkTwo: "/collections/mens-trainers",
 		linkTwoTitle: "Trainers",
-		linkThree: "/collections/men/shoes",
+		linkThree: "/collections/men-shoes",
 		linkThreeTitle: "Shoes",
-		linkFour: "/collections/men/boots",
+		linkFour: "/collections/mens-boots",
 		linkFourTitle: "Boots",
 	};
 
