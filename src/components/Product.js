@@ -6,7 +6,6 @@ import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
 import ProductImg from "./ProductImg";
 import { fetchProduct } from "../helpers/products/productHelpers";
-
 import ProductSocialShareButtons from "./ProductSocialShareButtons";
 
 const Product = (props) => {

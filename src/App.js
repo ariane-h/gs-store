@@ -9,6 +9,7 @@ import { Grid } from "@material-ui/core";
 import ProductContextProvider from "./contexts/ProductContext";
 import CartContextProvider from "./contexts/CartContext";
 import CollectionContextProvider from "./contexts/CollectionContext";
+import Contact from "./components/Contact";
 
 import Cart from "./components/Cart";
 
@@ -32,6 +33,7 @@ function App() {
 
 										<Route path="/products/:id" component={Product} />
 										<Route path="/cart" component={Cart} />
+										<Route path="/contact" component={Contact} />
 									</Switch>
 								</CartContextProvider>
 							</CollectionContextProvider>
