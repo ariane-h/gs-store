@@ -2,6 +2,7 @@ import React from "react";
 import Menu from "./Menu";
 import { Grid } from "@material-ui/core";
 import TopNavBar from "./TopNavBar";
+import PromoBar from "./PromoBar";
 
 const Header = () => {
 	return (
@@ -11,6 +12,7 @@ const Header = () => {
 				<h2>Shoe Store</h2>
 				<Menu />
 			</Grid>
+			<PromoBar />
 		</div>
 	);
 };
