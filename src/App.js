@@ -13,6 +13,7 @@ import Contact from "./components/contact/Contact";
 
 import Cart from "./components/cart/Cart";
 import SearchResults from "./components/search/SearchResults";
+import Delivery from "./components/delivery/Delivery";
 
 function App() {
 	return (
@@ -36,6 +37,7 @@ function App() {
 										<Route path="/cart" component={Cart} />
 										<Route path="/contact" component={Contact} />
 										<Route path="/search" component={SearchResults} />
+										<Route path="/delivery" component={Delivery} />
 									</Switch>
 								</CartContextProvider>
 							</CollectionContextProvider>

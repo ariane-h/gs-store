@@ -35,7 +35,7 @@ const PromoBar = () => {
 	return (
 		<AppBar position="static" color="default" elevation={0}>
 			<Toolbar className={classes.toolbar}>
-				<Link to="/#" className={classes.link} color="inherit">
+				<Link to="/delivery" className={classes.link} color="inherit">
 					<Box className={classes.title}>
 						<Typography
 							variant="body2"
