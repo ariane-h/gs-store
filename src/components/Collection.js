@@ -1,33 +1,36 @@
 import React, { useContext, useState, useEffect } from "react";
-import ProductCard from "./ProductCard";
 import { ProductContext } from "../contexts/ProductContext";
 import { CollectionContext } from "../contexts/CollectionContext";
-import { Grid, Typography, Box } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import {
+	Grid,
+	Typography,
+	Box,
+	MenuItem,
+	FormControl,
+	InputLabel,
+	Select,
+	makeStyles,
+} from "@material-ui/core";
 import {
 	fetchCollectionProducts,
-	searchProductsByTitle,
 	fetchCollectionDetails,
+	sortAlphaAscending,
+	sortAlphaDescending,
+	sortPriceAscending,
+	sortPriceDescending,
 } from "../helpers/collections/collectionHelpers";
+import CollectionProductList from "./CollectionProductList";
 
 const Collection = (props) => {
 	const { products } = useContext(ProductContext);
 	const { collections } = useContext(CollectionContext);
 	const collectionId = props.match.params.id;
 	const [collectionProducts, setCollectionProducts] = useState([]);
-
 	const [collectionDetails, setCollectionDetails] = useState({
 		title: "",
 		description: "",
 	});
-
-	const searchParam = window.location.search;
-	const searchTerm = searchParam.slice(3, searchParam.length);
-
-	// testing collection filter
-	collectionProducts.length > 0 &&
-		searchTerm &&
-		console.log(searchProductsByTitle(searchTerm, collectionProducts));
+	const [sortValue, setSortValue] = useState("");
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -56,6 +59,42 @@ const Collection = (props) => {
 		updateCollectionDetails();
 	}, [collectionId, products, collections]);
 
+	const useStyles = makeStyles((theme) => ({
+		formControl: {
+			margin: theme.spacing(1),
+			minWidth: 120,
+		},
+		selectEmpty: {
+			marginTop: theme.spacing(2),
+		},
+	}));
+
+	const classes = useStyles();
+
+	const handleChange = (e) => {
+		const sortParam = e.target.value;
+		switch (sortParam) {
+			case "A-Z":
+				setCollectionProducts(sortAlphaAscending(collectionProducts));
+				setSortValue(sortParam);
+				break;
+			case "Z-A":
+				setCollectionProducts(sortAlphaDescending(collectionProducts));
+				setSortValue(sortParam);
+				break;
+			case "0-9":
+				setCollectionProducts(sortPriceAscending(collectionProducts));
+				setSortValue(sortParam);
+				break;
+			case "9-0":
+				setCollectionProducts(sortPriceDescending(collectionProducts));
+				setSortValue(sortParam);
+				break;
+			default:
+				return collectionProducts;
+		}
+	};
+
 	return (
 		<>
 			<Grid container direction="column" alignItems="center">
@@ -64,31 +103,31 @@ const Collection = (props) => {
 						{collectionDetails && collectionDetails.title}
 					</Typography>
 				</Box>
-				<Box mb={5}>
+				<Box mb={1}>
 					<Typography variant="subtitle1" component="h2">
 						{collectionDetails && collectionDetails.description}
 					</Typography>
 				</Box>
 
-				<Grid container direction="row" item sm={10} spacing={3}>
-					{collectionProducts &&
-						collectionProducts.map((product) => {
-							return (
-								<Grid container item xs={12} sm={4} key={product.id}>
-									<Link
-										to={`/products/${product.id}`}
-										style={{ textDecoration: "none" }}
-									>
-										<ProductCard
-											product={product}
-											key={product.id}
-											imageUrl={product.imageUrl}
-										/>
-									</Link>
-								</Grid>
-							);
-						})}
-				</Grid>
+				<Box mb={2}>
+					<FormControl variant="outlined" className={classes.formControl}>
+						<InputLabel id="sort">Sort</InputLabel>
+						<Select
+							labelId="sort"
+							id="sort"
+							value={sortValue}
+							onChange={handleChange}
+							label="Sort"
+						>
+							<MenuItem value={"A-Z"}>A-Z</MenuItem>
+							<MenuItem value={"Z-A"}>Z-A</MenuItem>
+							<MenuItem value={"0-9"}>Price - low to high</MenuItem>
+							<MenuItem value={"9-0"}>Price - high to low</MenuItem>
+						</Select>
+					</FormControl>
+				</Box>
+
+				<CollectionProductList collectionProducts={collectionProducts} />
 			</Grid>
 		</>
 	);
