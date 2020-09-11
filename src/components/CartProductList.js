@@ -10,11 +10,13 @@ import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import CartProductImg from "./CartProductImg";
+import { increaseOrderQuantity } from "../actions/cartActions";
 
 const CartProductList = ({ cart, dispatch }) => {
 	const handleIncreaseQty = (sku, orderQty, availableQty) => {
 		if (orderQty < availableQty) {
-			dispatch({ type: "INCREASE_QTY", sku });
+			// dispatch({ type: "INCREASE_QTY", sku });
+			// increaseOrderQuantity(newQty, product, dispatch);
 		} else {
 			alert(`only ${availableQty} available`);
 		}

@@ -3,6 +3,7 @@ import { Button, FormControl, Snackbar } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import { addToCart, increaseOrderQuantity } from "../actions/cartActions";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -15,31 +16,27 @@ const AddToCartButton = (props) => {
 			return alert("please choose a size");
 		}
 
-		// check if item in cart
-		const productInCart = cart.find(
+		const orderItem = {
+			id: product.id,
+			sku: selectedSize.sku,
+			orderQty: 1,
+			imageUrl: product.imageUrl,
+			size: selectedSize.title,
+			price: product.price,
+			title: product.title,
+			availableQty: availableQty,
+		};
+
+		const productExistingInCart = cart.find(
 			(product) => product.sku === selectedSize.sku
 		);
 
-		//if not in cart, add to cart
-		if (!productInCart) {
-			dispatch({
-				type: "ADD_TO_CART",
-				cartItem: {
-					id: product.id,
-					sku: selectedSize.sku,
-					orderQty: 1,
-					imageUrl: product.imageUrl,
-					size: selectedSize.title,
-					price: product.price,
-					title: product.title,
-					availableQty: availableQty,
-				},
-			});
+		if (!productExistingInCart) {
+			addToCart(orderItem, dispatch);
 		} else {
-			dispatch({
-				type: "INCREASE_QTY",
-				sku: productInCart.sku,
-			});
+			const newQty = (productExistingInCart.orderQty += 1);
+			const sku = productExistingInCart.sku;
+			increaseOrderQuantity(newQty, sku, dispatch);
 		}
 
 		setOpenSuccess(true);

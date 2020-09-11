@@ -1,25 +1,24 @@
 export const cartReducer = (state, action) => {
+	console.log(state);
 	switch (action.type) {
 		case "ADD_TO_CART":
-			return [
-				...state,
-				{
-					id: action.cartItem.id,
-					sku: action.cartItem.sku,
-					orderQty: action.cartItem.orderQty,
-					imageUrl: action.cartItem.imageUrl,
-					size: action.cartItem.size,
-					price: action.cartItem.price,
-					title: action.cartItem.title,
-					availableQty: action.cartItem.availableQty,
-				},
-			];
+			return [...state, action.product];
 		case "INCREASE_QTY":
 			const productToIncrease = state.find(
 				(product) => product.sku === action.sku
 			);
-			productToIncrease.orderQty += 1;
+			productToIncrease.orderQty = action.newQty;
+
 			return [...state];
+
+		// return state.map((product) => {
+		// 	if (product.sku === action.sku) {
+		// 		return Object.assign({}, product, {
+		// 			orderQty: action.newQty,
+		// 		});
+		// 	}
+		// 	return product;
+		// });
 
 		case "DECREASE_QTY":
 			const productToDecrease = state.find(
