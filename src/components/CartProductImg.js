@@ -9,11 +9,10 @@ const CartProductImg = ({ imageUrl, altText }) => {
 		imageUrl &&
 			fetchImage(firebase, imageUrl).then((url) => setProductImg(url));
 	}, [imageUrl]);
-	return (
-		<div>
-			<img src={productImg} height="150" alt={altText} />
-		</div>
-	);
+
+	return productImg ? (
+		<img src={productImg} height="150" alt={altText} />
+	) : null;
 };
 
 export default CartProductImg;

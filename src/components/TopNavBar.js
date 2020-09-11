@@ -24,19 +24,6 @@ const TopNavBar = () => {
 		toolbarTitle: {
 			flexGrow: 1,
 		},
-		link: {
-			margin: theme.spacing(1, 1.5),
-		},
-		root: {
-			padding: "2px 4px",
-			display: "flex",
-			alignItems: "center",
-			width: 300,
-		},
-		input: {
-			marginLeft: theme.spacing(1),
-			flex: 1,
-		},
 		iconButton: {
 			color: "darkslategrey",
 		},
@@ -67,7 +54,7 @@ const TopNavBar = () => {
 						</IconButton>
 					</NavLink>
 
-					<NavLink to="contact">
+					<NavLink to="/contact">
 						<IconButton aria-label="help" className={classes.iconButton}>
 							<HelpOutlineRoundedIcon />
 						</IconButton>

@@ -21,7 +21,7 @@ const SizeChartTabContent = () => {
 
 	const classes = useStyles();
 	return (
-		<div>
+		<>
 			<Box pb={2}>
 				<TableContainer component={Paper}>
 					<Table className={classes.table} aria-label="simple table">
@@ -58,7 +58,7 @@ const SizeChartTabContent = () => {
 				</TableContainer>
 			</Box>
 			<Divider />
-		</div>
+		</>
 	);
 };
 

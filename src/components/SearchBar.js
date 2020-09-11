@@ -12,7 +12,6 @@ const SearchBar = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("search submitted", query);
 		setQuery("");
 		props.history.push(`/search/?s=${query}`);
 	};
@@ -37,31 +36,29 @@ const SearchBar = (props) => {
 
 	const classes = useStyles();
 	return (
-		<>
-			<Paper
-				component="form"
-				className={classes.searchBar}
-				onSubmit={handleSubmit}
-				elevation={1}
-			>
-				<InputBase
-					id="search-input"
-					className={classes.input}
-					placeholder="Search the shop"
-					inputProps={{ "aria-label": "search the shop" }}
-					value={query}
-					onChange={handleChange}
-				/>
+		<Paper
+			component="form"
+			className={classes.searchBar}
+			onSubmit={handleSubmit}
+			elevation={1}
+		>
+			<InputBase
+				id="search-input"
+				className={classes.input}
+				placeholder="Search the shop"
+				inputProps={{ "aria-label": "search the shop" }}
+				value={query}
+				onChange={handleChange}
+			/>
 
-				<IconButton
-					type="submit"
-					className={classes.iconButton}
-					aria-label="search"
-				>
-					<SearchIcon />
-				</IconButton>
-			</Paper>
-		</>
+			<IconButton
+				type="submit"
+				className={classes.iconButton}
+				aria-label="search"
+			>
+				<SearchIcon />
+			</IconButton>
+		</Paper>
 	);
 };
 

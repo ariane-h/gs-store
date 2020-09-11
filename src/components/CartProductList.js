@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Typography,
 	Grid,
@@ -17,10 +17,11 @@ import {
 	removeFromCart,
 } from "../actions/cartActions";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Link } from "react-router-dom";
 
 const CartProductList = ({ cart, dispatch }) => {
-	const [openQtyAlert, setOpenQtyAlert] = React.useState(false);
-	const [availableStock, setAvailableStock] = React.useState("");
+	const [openQtyAlert, setOpenQtyAlert] = useState(false);
+	const [availableStock, setAvailableStock] = useState("");
 
 	const handleIncreaseQty = (sku, orderQty, availableQty) => {
 		if (orderQty < availableQty) {
@@ -97,13 +98,20 @@ const CartProductList = ({ cart, dispatch }) => {
 								xs={12}
 							>
 								<Grid item xs={4} sm={2}>
-									<CartProductImg
-										imageUrl={lineItem.imageUrl}
-										altText={lineItem.title}
-									/>
+									<Link to={`/products/${lineItem.id}`}>
+										<CartProductImg
+											imageUrl={lineItem.imageUrl}
+											altText={lineItem.title}
+										/>
+									</Link>
 								</Grid>
 								<Grid item xs={2} sm={2}>
-									<Typography variant="body1">{lineItem.title}</Typography>
+									<Link
+										to={`/products/${lineItem.id}`}
+										style={{ textDecoration: "none" }}
+									>
+										<Typography variant="body1">{lineItem.title}</Typography>
+									</Link>
 								</Grid>
 								<Grid item xs={1} sm={2}>
 									<Typography variant="body1">{lineItem.size}</Typography>

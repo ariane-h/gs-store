@@ -34,7 +34,7 @@ const Home = () => {
 			},
 		},
 
-		root: {
+		container: {
 			flexGrow: 1,
 			textAlign: "center",
 		},
@@ -53,7 +53,7 @@ const Home = () => {
 				<Typography variant="h5">Shop Trainers</Typography>
 			</Box>
 
-			<div className={classes.root}>
+			<Box className={classes.container}>
 				<Grid container>
 					<Grid item xs={12} sm={4}>
 						<Link to="/collections/mens" style={{ textDecoration: "none" }}>
@@ -92,7 +92,7 @@ const Home = () => {
 						</Link>
 					</Grid>
 				</Grid>
-			</div>
+			</Box>
 		</>
 	);
 };

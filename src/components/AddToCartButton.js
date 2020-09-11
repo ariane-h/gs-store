@@ -82,7 +82,7 @@ const AddToCartButton = (props) => {
 	}
 
 	return (
-		<div>
+		<>
 			<FormControl variant="outlined" onClick={handleSubmit}>
 				<Button
 					variant="contained"
@@ -122,7 +122,7 @@ const AddToCartButton = (props) => {
 					Only {`${availableQty}`} available
 				</Alert>
 			</Snackbar>
-		</div>
+		</>
 	);
 };
 

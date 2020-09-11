@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	MenuItem,
 	FormControl,
@@ -10,7 +10,7 @@ import {
 import AddToCartButton from "./AddToCartButton";
 
 const ProductOptions = ({ product, sizeData }) => {
-	const [selectedSize, setSelectedSize] = React.useState("");
+	const [selectedSize, setSelectedSize] = useState("");
 
 	const handleChange = (event) => {
 		setSelectedSize(event.target.value);

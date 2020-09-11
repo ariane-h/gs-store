@@ -25,30 +25,28 @@ const ProductSocialShareButtons = ({ title }) => {
 
 	const classes = useStyles();
 	return (
-		<>
-			<Box className={classes.container}>
-				<FacebookShareButton
-					url={`www.goldenshoe.co.uk/${window.location.pathname}`}
-					quote={`Check out these neat ${title}`}
-				>
-					<FacebookIcon size={40} />
-				</FacebookShareButton>
-				<TwitterShareButton
-					url={`www.goldenshoe.co.uk/${window.location.pathname}`}
-					title={`Check out these neat ${title}`}
-				>
-					<TwitterIcon size={40} />
-				</TwitterShareButton>
-				<WhatsappShareButton
-					url={`www.goldenshoe.co.uk/${window.location.pathname}`}
-					title={`Check out these neat ${title}`}
-					separator=":: "
-					className="Demo__some-network__share-button"
-				>
-					<WhatsAppIcon size={40} />
-				</WhatsappShareButton>
-			</Box>
-		</>
+		<Box className={classes.container}>
+			<FacebookShareButton
+				url={`www.goldenshoe.co.uk/${window.location.pathname}`}
+				quote={`Check out these neat ${title}`}
+			>
+				<FacebookIcon size={40} />
+			</FacebookShareButton>
+			<TwitterShareButton
+				url={`www.goldenshoe.co.uk/${window.location.pathname}`}
+				title={`Check out these neat ${title}`}
+			>
+				<TwitterIcon size={40} />
+			</TwitterShareButton>
+			<WhatsappShareButton
+				url={`www.goldenshoe.co.uk/${window.location.pathname}`}
+				title={`Check out these neat ${title}`}
+				separator=":: "
+				className="Demo__some-network__share-button"
+			>
+				<WhatsAppIcon size={40} />
+			</WhatsappShareButton>
+		</Box>
 	);
 };
 

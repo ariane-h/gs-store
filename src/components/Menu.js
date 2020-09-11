@@ -29,20 +29,18 @@ const Menu = () => {
 	};
 
 	return (
-		<>
-			<Toolbar>
-				<Button color="inherit" component={NavLink} to="/">
-					Home
-				</Button>
+		<Toolbar>
+			<Button color="inherit" component={NavLink} to="/">
+				Home
+			</Button>
 
-				<MenuDropdown links={womensCollections} />
-				<MenuDropdown links={mensCollections} />
+			<MenuDropdown links={womensCollections} />
+			<MenuDropdown links={mensCollections} />
 
-				<Button color="inherit" component={NavLink} to="/cart">
-					Cart
-				</Button>
-			</Toolbar>
-		</>
+			<Button color="inherit" component={NavLink} to="/cart">
+				Cart
+			</Button>
+		</Toolbar>
 	);
 };
 

@@ -9,10 +9,10 @@ import {
 
 const Footer = () => {
 	const useStyles = makeStyles((theme) => ({
-		root: {
+		container: {
 			display: "flex",
 			flexDirection: "column",
-			minHeight: "70vh",
+			minHeight: "50vh",
 		},
 
 		footer: {
@@ -27,7 +27,7 @@ const Footer = () => {
 
 	const classes = useStyles();
 	return (
-		<div className={classes.root}>
+		<Box className={classes.container}>
 			<CssBaseline />
 			<footer className={classes.footer}>
 				<Grid container direction="row" justify="space-evenly" spacing={4}>
@@ -63,7 +63,7 @@ const Footer = () => {
 					</Grid>
 				</Grid>
 			</footer>
-		</div>
+		</Box>
 	);
 };
 

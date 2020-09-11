@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -6,8 +6,14 @@ import Slider from "@material-ui/core/Slider";
 import { Box } from "@material-ui/core";
 
 const FitGuide = () => {
+	const [value, setValue] = useState(30);
+
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
+
 	const useStyles = makeStyles({
-		root: {
+		container: {
 			display: "flex",
 			flexDirection: "column",
 			alignItems: "center",
@@ -19,38 +25,31 @@ const FitGuide = () => {
 	});
 
 	const classes = useStyles();
-	const [value, setValue] = React.useState(30);
-
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
-	};
 
 	return (
-		<>
-			<Box className={classes.root} p={2}>
-				<div className={classes.slider}>
-					<Typography id="d-slider" gutterBottom>
-						Average Size Rating
-					</Typography>
-					<Grid container spacing={2}>
-						<Grid item>
-							<Typography variant="caption">smaller</Typography>
-						</Grid>
-						<Grid item xs>
-							<Slider
-								disabled
-								value={value}
-								onChange={handleChange}
-								aria-labelledby="continuous-slider"
-							/>
-						</Grid>
-						<Grid item>
-							<Typography variant="caption">larger</Typography>
-						</Grid>
+		<Box className={classes.container} p={2}>
+			<Box className={classes.slider}>
+				<Typography id="d-slider" gutterBottom>
+					Average Size Rating
+				</Typography>
+				<Grid container spacing={2}>
+					<Grid item>
+						<Typography variant="caption">smaller</Typography>
 					</Grid>
-				</div>
+					<Grid item xs>
+						<Slider
+							disabled
+							value={value}
+							onChange={handleChange}
+							aria-labelledby="continuous-slider"
+						/>
+					</Grid>
+					<Grid item>
+						<Typography variant="caption">larger</Typography>
+					</Grid>
+				</Grid>
 			</Box>
-		</>
+		</Box>
 	);
 };
 

@@ -93,7 +93,7 @@ const CartTotal = () => {
 	}
 
 	const useStyles = makeStyles((theme) => ({
-		root: {
+		promoInput: {
 			"& > *": {
 				margin: theme.spacing(1),
 				width: "25ch",
@@ -115,7 +115,7 @@ const CartTotal = () => {
 			</Box>
 
 			<Box height="50%" display="flex" pt={1}>
-				<form className={classes.root} onSubmit={handleSubmit}>
+				<form className={classes.promoInput} onSubmit={handleSubmit}>
 					<TextField
 						id="input"
 						label="Enter Promotional Code"

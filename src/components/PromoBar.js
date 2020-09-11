@@ -39,50 +39,48 @@ const PromoBar = () => {
 	const classes = useStyles();
 
 	return (
-		<>
-			<AppBar position="static" color="default" elevation={0}>
-				<Toolbar className={classes.toolbar}>
-					<Link to="/delivery" className={classes.link} color="inherit">
-						<Box className={classes.content}>
-							<Box className={classes.title}>
-								<Typography
-									variant="overline"
-									style={{ lineHeight: "2" }}
-									color="textPrimary"
-								>
-									Delivery Info
-								</Typography>
-								<LocalShippingIcon
-									fontSize="small"
-									style={{ color: "darkslategrey", paddingLeft: "2px" }}
-								/>
-							</Box>
-							<Typography variant="caption" color="textPrimary">
-								Find out more
+		<AppBar position="static" color="default" elevation={0}>
+			<Toolbar className={classes.toolbar}>
+				<Link to="/delivery" className={classes.link} color="inherit">
+					<Box className={classes.content}>
+						<Box className={classes.title}>
+							<Typography
+								variant="overline"
+								style={{ lineHeight: "2" }}
+								color="textPrimary"
+							>
+								Delivery Info
+							</Typography>
+							<LocalShippingIcon
+								fontSize="small"
+								style={{ color: "darkslategrey", paddingLeft: "2px" }}
+							/>
+						</Box>
+						<Typography variant="caption" color="textPrimary">
+							Find out more
+						</Typography>
+					</Box>
+				</Link>
+
+				<Link to="/womens" className={classes.link} color="inherit">
+					<Box className={classes.content}>
+						<Box className={classes.title}>
+							<Typography
+								variant="overline"
+								style={{ lineHeight: "2" }}
+								color="textPrimary"
+							>
+								SALE
 							</Typography>
 						</Box>
-					</Link>
 
-					<Link to="/womens" className={classes.link} color="inherit">
-						<Box className={classes.content}>
-							<Box className={classes.title}>
-								<Typography
-									variant="overline"
-									style={{ lineHeight: "2" }}
-									color="textPrimary"
-								>
-									SALE
-								</Typography>
-							</Box>
-
-							<Typography variant="caption" color="textPrimary">
-								Up to 20% off
-							</Typography>
-						</Box>
-					</Link>
-				</Toolbar>
-			</AppBar>
-		</>
+						<Typography variant="caption" color="textPrimary">
+							Up to 20% off
+						</Typography>
+					</Box>
+				</Link>
+			</Toolbar>
+		</AppBar>
 	);
 };
 

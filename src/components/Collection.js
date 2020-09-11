@@ -73,22 +73,19 @@ const Collection = (props) => {
 
 	const handleChange = (e) => {
 		const sortParam = e.target.value;
+		setSortValue(sortParam);
 		switch (sortParam) {
 			case "A-Z":
 				setCollectionProducts(sortAlphaAscending(collectionProducts));
-				setSortValue(sortParam);
 				break;
 			case "Z-A":
 				setCollectionProducts(sortAlphaDescending(collectionProducts));
-				setSortValue(sortParam);
 				break;
 			case "0-9":
 				setCollectionProducts(sortPriceAscending(collectionProducts));
-				setSortValue(sortParam);
 				break;
 			case "9-0":
 				setCollectionProducts(sortPriceDescending(collectionProducts));
-				setSortValue(sortParam);
 				break;
 			default:
 				return collectionProducts;

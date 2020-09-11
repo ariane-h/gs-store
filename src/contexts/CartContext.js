@@ -9,15 +9,13 @@ const CartContextProvider = (props) => {
 		return localData ? JSON.parse(localData) : [];
 	});
 
-	useEffect(() => {
-		localStorage.setItem("cart", JSON.stringify(cart));
-	}, [cart]);
-
 	const [subtotal, setSubtotal] = useState(0);
 	const deliveryFee = 0;
 	const [total, setTotal] = useState(0);
 
 	useEffect(() => {
+		localStorage.setItem("cart", JSON.stringify(cart));
+
 		const calculateSubTotal = async () => {
 			let subtotalResult = 0;
 			await cart.map((product) => {

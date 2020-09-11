@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
 	Button,
 	makeStyles,
@@ -8,22 +8,23 @@ import {
 	ClickAwayListener,
 	MenuList,
 	MenuItem,
+	Box,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
 const MenuDropdown = ({ links }) => {
-	const useStyles = makeStyles((theme) => ({
-		root: {
-			display: "flex",
-		},
-		paper: {
-			marginRight: theme.spacing(2),
-		},
-	}));
+	const [open, setOpen] = useState(false);
+	const anchorRef = useRef(null);
 
-	const classes = useStyles();
-	const [open, setOpen] = React.useState(false);
-	const anchorRef = React.useRef(null);
+	// returns focus to the button
+	const prevOpen = useRef(open);
+	useEffect(() => {
+		if (prevOpen.current === true && open === false) {
+			anchorRef.current.focus();
+		}
+
+		prevOpen.current = open;
+	}, [open]);
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -44,94 +45,93 @@ const MenuDropdown = ({ links }) => {
 		}
 	}
 
-	// returns focus to the button
-	const prevOpen = React.useRef(open);
-	React.useEffect(() => {
-		if (prevOpen.current === true && open === false) {
-			anchorRef.current.focus();
-		}
+	const useStyles = makeStyles((theme) => ({
+		container: {
+			display: "flex",
+		},
+		paper: {
+			marginRight: theme.spacing(2),
+		},
+	}));
 
-		prevOpen.current = open;
-	}, [open]);
+	const classes = useStyles();
 
 	if (links) {
 		return (
 			<>
-				<div className={classes.root}>
-					<div>
-						<Button
-							ref={anchorRef}
-							aria-controls={open ? "menu-list-grow" : undefined}
-							aria-haspopup="true"
-							onClick={handleToggle}
-						>
-							{links.title}
-						</Button>
-						<Popper
-							open={open}
-							anchorEl={anchorRef.current}
-							role={undefined}
-							transition
-							disablePortal
-						>
-							{({ TransitionProps, placement }) => (
-								<Grow
-									{...TransitionProps}
-									style={{
-										transformOrigin:
-											placement === "bottom" ? "center top" : "center bottom",
-									}}
-								>
-									<Paper>
-										<ClickAwayListener onClickAway={handleClose}>
-											<MenuList
-												autoFocusItem={open}
-												id="menu-list-grow"
-												onKeyDown={handleListKeyDown}
+				<Box className={classes.container}>
+					<Button
+						ref={anchorRef}
+						aria-controls={open ? "menu-list-grow" : undefined}
+						aria-haspopup="true"
+						onClick={handleToggle}
+					>
+						{links.title}
+					</Button>
+					<Popper
+						open={open}
+						anchorEl={anchorRef.current}
+						role={undefined}
+						transition
+						disablePortal
+					>
+						{({ TransitionProps, placement }) => (
+							<Grow
+								{...TransitionProps}
+								style={{
+									transformOrigin:
+										placement === "bottom" ? "center top" : "center bottom",
+								}}
+							>
+								<Paper>
+									<ClickAwayListener onClickAway={handleClose}>
+										<MenuList
+											autoFocusItem={open}
+											id="menu-list-grow"
+											onKeyDown={handleListKeyDown}
+										>
+											<NavLink
+												to={links.linkOne}
+												style={{ textDecoration: "none" }}
 											>
-												<NavLink
-													to={links.linkOne}
-													style={{ textDecoration: "none" }}
-												>
-													<MenuItem onClick={handleClose}>
-														{links.linkOneTitle}
-													</MenuItem>
-												</NavLink>
+												<MenuItem onClick={handleClose}>
+													{links.linkOneTitle}
+												</MenuItem>
+											</NavLink>
 
-												<NavLink
-													to={links.linkTwo}
-													style={{ textDecoration: "none" }}
-												>
-													<MenuItem onClick={handleClose}>
-														{links.linkTwoTitle}
-													</MenuItem>
-												</NavLink>
+											<NavLink
+												to={links.linkTwo}
+												style={{ textDecoration: "none" }}
+											>
+												<MenuItem onClick={handleClose}>
+													{links.linkTwoTitle}
+												</MenuItem>
+											</NavLink>
 
-												<NavLink
-													to={links.linkThree}
-													style={{ textDecoration: "none" }}
-												>
-													<MenuItem onClick={handleClose}>
-														{links.linkThreeTitle}
-													</MenuItem>
-												</NavLink>
+											<NavLink
+												to={links.linkThree}
+												style={{ textDecoration: "none" }}
+											>
+												<MenuItem onClick={handleClose}>
+													{links.linkThreeTitle}
+												</MenuItem>
+											</NavLink>
 
-												<NavLink
-													to={links.linkFour}
-													style={{ textDecoration: "none" }}
-												>
-													<MenuItem onClick={handleClose}>
-														{links.linkFourTitle}
-													</MenuItem>
-												</NavLink>
-											</MenuList>
-										</ClickAwayListener>
-									</Paper>
-								</Grow>
-							)}
-						</Popper>
-					</div>
-				</div>
+											<NavLink
+												to={links.linkFour}
+												style={{ textDecoration: "none" }}
+											>
+												<MenuItem onClick={handleClose}>
+													{links.linkFourTitle}
+												</MenuItem>
+											</NavLink>
+										</MenuList>
+									</ClickAwayListener>
+								</Paper>
+							</Grow>
+						)}
+					</Popper>
+				</Box>
 			</>
 		);
 	}

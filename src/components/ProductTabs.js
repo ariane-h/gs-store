@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 
 import PropTypes from "prop-types";
@@ -10,6 +10,8 @@ import ReturnsTabContent from "./ReturnsTabContent";
 import SizeChartTabContent from "./SizeChartTabContent";
 
 const ProductTabs = () => {
+	const [value, setValue] = useState(0);
+
 	function TabPanel(props) {
 		const { children, value, index, ...other } = props;
 
@@ -39,41 +41,36 @@ const ProductTabs = () => {
 		};
 	}
 
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
+
 	const useStyles = makeStyles((theme) => ({
-		root: {
+		container: {
 			flexGrow: 1,
 		},
 	}));
 
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
-
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
-	};
 
 	return (
-		<>
-			<Box p={3}>
-				<div className={classes.root}>
-					<Tabs value={value} onChange={handleChange} aria-label="info tabs">
-						<Tab label="Delivery" {...a11yProps(0)} />
-						<Tab label="Returns" {...a11yProps(1)} />
-						<Tab label="Size Chart" {...a11yProps(2)} />
-					</Tabs>
+		<Box className={classes.container} p={3}>
+			<Tabs value={value} onChange={handleChange} aria-label="info tabs">
+				<Tab label="Delivery" {...a11yProps(0)} />
+				<Tab label="Returns" {...a11yProps(1)} />
+				<Tab label="Size Chart" {...a11yProps(2)} />
+			</Tabs>
 
-					<TabPanel value={value} index={0}>
-						<DeliveryTabContent />
-					</TabPanel>
-					<TabPanel value={value} index={1}>
-						<ReturnsTabContent />
-					</TabPanel>
-					<TabPanel value={value} index={2}>
-						<SizeChartTabContent />
-					</TabPanel>
-				</div>
-			</Box>
-		</>
+			<TabPanel value={value} index={0}>
+				<DeliveryTabContent />
+			</TabPanel>
+			<TabPanel value={value} index={1}>
+				<ReturnsTabContent />
+			</TabPanel>
+			<TabPanel value={value} index={2}>
+				<SizeChartTabContent />
+			</TabPanel>
+		</Box>
 	);
 };
 

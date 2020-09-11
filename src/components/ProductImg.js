@@ -10,11 +10,7 @@ const ProductImg = ({ imageUrl }) => {
 			fetchImage(firebase, imageUrl).then((url) => setProductImg(url));
 	}, [imageUrl]);
 
-	return (
-		<div>
-			<img src={productImg} height="440" alt="" />
-		</div>
-	);
+	return <img src={productImg} height="440" alt="" />;
 };
 
 export default ProductImg;
