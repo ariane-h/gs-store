@@ -9,11 +9,13 @@ const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
 	const { selectedSize, product, availableQty } = props;
 	const [openSuccess, setOpenSuccess] = React.useState(false);
+	const [openError, setOpenError] = React.useState(false);
+	const [openQtyAlert, setOpenQtyAlert] = React.useState(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!selectedSize) {
-			return alert("please choose a size");
+			return setOpenError(true);
 		}
 
 		const orderItem = {
@@ -33,13 +35,17 @@ const AddToCartButton = (props) => {
 
 		if (!productExistingInCart) {
 			addToCart(orderItem, dispatch);
-		} else {
+			setOpenSuccess(true);
+		} else if (
+			productExistingInCart.orderQty < productExistingInCart.availableQty
+		) {
 			const newQty = (productExistingInCart.orderQty += 1);
 			const sku = productExistingInCart.sku;
 			increaseOrderQuantity(newQty, sku, dispatch);
+			setOpenSuccess(true);
+		} else {
+			setOpenQtyAlert(true);
 		}
-
-		setOpenSuccess(true);
 	};
 
 	const handleClose = (event, reason) => {
@@ -48,6 +54,8 @@ const AddToCartButton = (props) => {
 		}
 
 		setOpenSuccess(false);
+		setOpenError(false);
+		setOpenQtyAlert(false);
 	};
 
 	function Alert(props) {
@@ -75,6 +83,20 @@ const AddToCartButton = (props) => {
 			>
 				<Alert onClose={handleClose} severity="success">
 					Added to Cart
+				</Alert>
+			</Snackbar>
+			<Snackbar open={openError} autoHideDuration={2000} onClose={handleClose}>
+				<Alert onClose={handleClose} severity="info">
+					Please choose a size
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openQtyAlert}
+				autoHideDuration={2000}
+				onClose={handleClose}
+			>
+				<Alert onClose={handleClose} severity="info">
+					Only {`${availableQty}`} available
 				</Alert>
 			</Snackbar>
 		</div>

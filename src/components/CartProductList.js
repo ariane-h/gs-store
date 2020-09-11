@@ -5,6 +5,7 @@ import {
 	Box,
 	IconButton,
 	makeStyles,
+	Snackbar,
 } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
@@ -15,14 +16,19 @@ import {
 	decreaseOrderQuantity,
 	removeFromCart,
 } from "../actions/cartActions";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const CartProductList = ({ cart, dispatch }) => {
+	const [openQtyAlert, setOpenQtyAlert] = React.useState(false);
+	const [availableStock, setAvailableStock] = React.useState("");
+
 	const handleIncreaseQty = (sku, orderQty, availableQty) => {
 		if (orderQty < availableQty) {
 			const newQty = orderQty + 1;
 			increaseOrderQuantity(newQty, sku, dispatch);
 		} else {
-			alert(`only ${availableQty} available`);
+			setAvailableStock(availableQty);
+			return setOpenQtyAlert(true);
 		}
 	};
 
@@ -38,6 +44,18 @@ const CartProductList = ({ cart, dispatch }) => {
 	const handleDelete = (sku) => {
 		removeFromCart(sku, dispatch);
 	};
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpenQtyAlert(false);
+	};
+
+	function Alert(props) {
+		return <MuiAlert elevation={6} variant="filled" {...props} />;
+	}
 
 	const useStyles = makeStyles((theme) => ({
 		productList: {
@@ -137,6 +155,15 @@ const CartProductList = ({ cart, dispatch }) => {
 						);
 					})}
 			</Grid>
+			<Snackbar
+				open={openQtyAlert}
+				autoHideDuration={2000}
+				onClose={handleClose}
+			>
+				<Alert onClose={handleClose} severity="info">
+					Only {`${availableStock}`} available
+				</Alert>
+			</Snackbar>
 		</>
 	);
 };
