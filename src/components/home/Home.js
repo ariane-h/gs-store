@@ -42,6 +42,14 @@ const Home = () => {
 		promo: {
 			padding: "20px",
 		},
+		heroLink: {
+			textDecoration: "none",
+			color: "white",
+		},
+		promoLink: {
+			textDecoration: "none",
+			color: "rgba(0, 0, 0, 0.87)",
+		},
 	}));
 
 	const classes = useStyles();
@@ -49,46 +57,45 @@ const Home = () => {
 	return (
 		<>
 			<Box className={classes.hero}>
-				<Typography variant="h2">Your Favourite Pair</Typography>
-				<Typography variant="h5">Shop Trainers</Typography>
+				<Link to="/collections/womens-trainers" className={classes.heroLink}>
+					<Typography variant="h2">Your Favourite Pair</Typography>
+					<Typography variant="h5">Shop Womens Trainers</Typography>
+				</Link>
 			</Box>
 
 			<Box className={classes.container}>
 				<Grid container>
 					<Grid item xs={12} sm={4}>
-						<Link to="/collections/mens" style={{ textDecoration: "none" }}>
+						<Link to="/collections/mens" className={classes.promoLink}>
 							<img
 								className={classes.promo}
 								src="img/airjordan-red.jpg"
 								height="300"
 								alt=""
 							/>
-							<Typography variant="h5">Mens</Typography>
+							<Typography variant="h5">Mens Shoes</Typography>
 						</Link>
 					</Grid>
 					<Grid item xs={12} sm={4}>
-						<Link to="/collections/womens" style={{ textDecoration: "none" }}>
+						<Link to="/collections/womens" className={classes.promoLink}>
 							<img
 								className={classes.promo}
 								src="img/mint-flats.jpg"
 								height="300"
 								alt=""
 							/>
-							<Typography variant="h5">Womens</Typography>
+							<Typography variant="h5">Womens Shoes</Typography>
 						</Link>
 					</Grid>
 					<Grid item xs={12} sm={4}>
-						<Link
-							to="/collections/womens-trainers"
-							style={{ textDecoration: "none" }}
-						>
+						<Link to="/collections/womens-boots" className={classes.promoLink}>
 							<img
 								className={classes.promo}
 								src="img/converse.jpg"
 								height="300"
 								alt=""
 							/>
-							<Typography variant="h5">Womens Trainers</Typography>
+							<Typography variant="h5">Womens Boots</Typography>
 						</Link>
 					</Grid>
 				</Grid>

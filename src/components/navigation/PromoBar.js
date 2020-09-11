@@ -15,16 +15,10 @@ const PromoBar = () => {
 			minHeight: "50px",
 			display: "flex",
 			justifyContent: "space-around",
-			backgroundColor: "powderblue",
+			backgroundColor: "#ECE1DE",
 			position: "inherit",
 		},
 
-		content: {
-			textAlign: "center",
-			display: "flex",
-			flexDirection: "column",
-			padding: "5px",
-		},
 		link: {
 			textDecoration: "none",
 		},
@@ -41,42 +35,47 @@ const PromoBar = () => {
 	return (
 		<AppBar position="static" color="default" elevation={0}>
 			<Toolbar className={classes.toolbar}>
-				<Link to="/delivery" className={classes.link} color="inherit">
-					<Box className={classes.content}>
-						<Box className={classes.title}>
-							<Typography
-								variant="overline"
-								style={{ lineHeight: "2" }}
-								color="textPrimary"
-							>
-								Delivery Info
-							</Typography>
-							<LocalShippingIcon
-								fontSize="small"
-								style={{ color: "darkslategrey", paddingLeft: "2px" }}
-							/>
-						</Box>
-						<Typography variant="caption" color="textPrimary">
-							Find out more
+				<Link to="/#" className={classes.link} color="inherit">
+					<Box className={classes.title}>
+						<Typography
+							variant="body2"
+							style={{ lineHeight: "2" }}
+							color="textPrimary"
+						>
+							Delivery Info
 						</Typography>
+						<LocalShippingIcon
+							fontSize="small"
+							style={{ color: "darkslategrey", paddingLeft: "2px" }}
+						/>
 					</Box>
 				</Link>
 
-				<Link to="/womens" className={classes.link} color="inherit">
+				<Link to="/#" className={classes.link} color="inherit">
 					<Box className={classes.content}>
 						<Box className={classes.title}>
 							<Typography
-								variant="overline"
+								variant="body2"
 								style={{ lineHeight: "2" }}
 								color="textPrimary"
 							>
-								SALE
+								SALE! Up to 20% off
 							</Typography>
 						</Box>
+					</Box>
+				</Link>
 
-						<Typography variant="caption" color="textPrimary">
-							Up to 20% off
-						</Typography>
+				<Link to="/#" className={classes.link} color="inherit">
+					<Box className={classes.content}>
+						<Box className={classes.title}>
+							<Typography
+								variant="body2"
+								style={{ lineHeight: "2" }}
+								color="textPrimary"
+							>
+								Visit Our Store
+							</Typography>
+						</Box>
 					</Box>
 				</Link>
 			</Toolbar>

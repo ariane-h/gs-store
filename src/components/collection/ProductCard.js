@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-	Card,
-	CardHeader,
-	CardMedia,
-	CardContent,
-	Typography,
-	CardActions,
-	Button,
-	makeStyles,
-} from "@material-ui/core";
+import { Card, CardHeader, CardMedia, makeStyles } from "@material-ui/core";
 import firebase from "../../config/firebase";
 import { fetchImage } from "../../helpers/images/imageHelpers";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -25,6 +16,14 @@ const ProductCard = ({ product, imageUrl }) => {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "space-between",
+			width: "360px",
+			height: "384px",
+		},
+		cardImage: {
+			height: "auto",
+			maxHeight: "290px",
+			width: "auto",
+			maxWidth: "365px",
 		},
 	}));
 
@@ -36,26 +35,18 @@ const ProductCard = ({ product, imageUrl }) => {
 				<CardMedia
 					component="img"
 					alt="Contemplative Reptile"
-					height="300"
 					image={productImg}
 					title={product.title}
+					className={classes.cardImage}
 				/>
 			) : (
-				<Skeleton variant="rect" width={375} height={300} />
+				<Skeleton variant="rect" width={365} height={290} />
 			)}
 
 			<CardHeader
 				title={product.title}
 				subheader={`£${product.price.toFixed(2)}`}
 			/>
-			<CardContent>
-				<Typography variant="body2" component="p">
-					{product.description}
-				</Typography>
-			</CardContent>
-			<CardActions>
-				<Button size="small">Add To Cart</Button>
-			</CardActions>
 		</Card>
 	);
 };

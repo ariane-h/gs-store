@@ -96,7 +96,7 @@ const CartTotal = () => {
 		promoInput: {
 			"& > *": {
 				margin: theme.spacing(1),
-				width: "25ch",
+				width: "35ch",
 			},
 		},
 	}));
@@ -106,10 +106,10 @@ const CartTotal = () => {
 	return (
 		<>
 			<Box height="30%" pl={1} pb={2}>
-				<Typography variant="body1" gutterBottom>
+				<Typography variant="subtitle1" gutterBottom>
 					Subtotal: £{`${subtotal.toFixed(2)}`}
 				</Typography>
-				<Typography variant="body1" gutterBottom>
+				<Typography variant="subtitle1" gutterBottom>
 					Delivery: FREE
 				</Typography>
 			</Box>
@@ -133,7 +133,7 @@ const CartTotal = () => {
 			</Box>
 
 			<Box height="20%" pl={1}>
-				<Typography variant="h6" gutterBottom>
+				<Typography variant="h5" gutterBottom>
 					Total: £{`${cartTotal.toFixed(2)}`}
 				</Typography>
 			</Box>

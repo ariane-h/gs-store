@@ -11,7 +11,7 @@ const Header = () => {
 			letterSpacing: "2px",
 		},
 		link: {
-			color: "darkslategrey",
+			color: "rgba(0, 0, 0, 0.87)",
 			textDecoration: "none",
 		},
 	}));

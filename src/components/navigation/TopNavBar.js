@@ -16,6 +16,7 @@ const TopNavBar = () => {
 	const useStyles = makeStyles((theme) => ({
 		appBar: {
 			marginBottom: "20px",
+			backgroundColor: "#F8F3F2",
 		},
 		toolbar: {
 			flexWrap: "wrap",
@@ -25,7 +26,7 @@ const TopNavBar = () => {
 			flexGrow: 1,
 		},
 		iconButton: {
-			color: "darkslategrey",
+			color: "rgba(0, 0, 0, 0.87)",
 		},
 	}));
 

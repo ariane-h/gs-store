@@ -52,6 +52,12 @@ const MenuDropdown = ({ links }) => {
 		paper: {
 			marginRight: theme.spacing(2),
 		},
+		links: {
+			textDecoration: "none",
+		},
+		text: {
+			color: "rgba(0, 0, 0, 0.87)",
+		},
 	}));
 
 	const classes = useStyles();
@@ -90,38 +96,38 @@ const MenuDropdown = ({ links }) => {
 											id="menu-list-grow"
 											onKeyDown={handleListKeyDown}
 										>
-											<NavLink
-												to={links.linkOne}
-												style={{ textDecoration: "none" }}
-											>
-												<MenuItem onClick={handleClose}>
+											<NavLink to={links.linkOne} className={classes.links}>
+												<MenuItem
+													onClick={handleClose}
+													className={classes.text}
+												>
 													{links.linkOneTitle}
 												</MenuItem>
 											</NavLink>
 
-											<NavLink
-												to={links.linkTwo}
-												style={{ textDecoration: "none" }}
-											>
-												<MenuItem onClick={handleClose}>
+											<NavLink to={links.linkTwo} className={classes.links}>
+												<MenuItem
+													onClick={handleClose}
+													className={classes.text}
+												>
 													{links.linkTwoTitle}
 												</MenuItem>
 											</NavLink>
 
-											<NavLink
-												to={links.linkThree}
-												style={{ textDecoration: "none" }}
-											>
-												<MenuItem onClick={handleClose}>
+											<NavLink to={links.linkThree} className={classes.links}>
+												<MenuItem
+													onClick={handleClose}
+													className={classes.text}
+												>
 													{links.linkThreeTitle}
 												</MenuItem>
 											</NavLink>
 
-											<NavLink
-												to={links.linkFour}
-												style={{ textDecoration: "none" }}
-											>
-												<MenuItem onClick={handleClose}>
+											<NavLink to={links.linkFour} className={classes.links}>
+												<MenuItem
+													onClick={handleClose}
+													className={classes.text}
+												>
 													{links.linkFourTitle}
 												</MenuItem>
 											</NavLink>
