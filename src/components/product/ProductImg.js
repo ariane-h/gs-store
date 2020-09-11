@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import firebase from "../config/firebase";
-import { fetchImage } from "../helpers/images/imageHelpers";
+import firebase from "../../config/firebase";
+import { fetchImage } from "../../helpers/images/imageHelpers";
 
 const ProductImg = ({ imageUrl }) => {
 	const [productImg, setProductImg] = useState("");

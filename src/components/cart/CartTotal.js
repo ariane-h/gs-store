@@ -6,7 +6,7 @@ import {
 	Snackbar,
 	Box,
 } from "@material-ui/core";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
 
 const CartTotal = () => {

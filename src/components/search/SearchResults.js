@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ProductContext } from "../contexts/ProductContext";
-import { searchProductsByTitle } from "../helpers/collections/collectionHelpers";
+import { ProductContext } from "../../contexts/ProductContext";
+import { searchProductsByTitle } from "../../helpers/collections/collectionHelpers";
 import { Grid, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import ProductCard from "./ProductCard";
+import ProductCard from "../collection/ProductCard";
 
 const SearchResults = () => {
 	const { products } = useContext(ProductContext);

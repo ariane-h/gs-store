@@ -9,7 +9,7 @@ import {
 import { NavLink } from "react-router-dom";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
-import SearchBar from "./SearchBar";
+import SearchBar from "../search/SearchBar";
 import HelpOutlineRoundedIcon from "@material-ui/icons/HelpOutlineRounded";
 
 const TopNavBar = () => {

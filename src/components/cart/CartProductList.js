@@ -15,7 +15,7 @@ import {
 	increaseOrderQuantity,
 	decreaseOrderQuantity,
 	removeFromCart,
-} from "../actions/cartActions";
+} from "../../actions/cartActions";
 import MuiAlert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
 

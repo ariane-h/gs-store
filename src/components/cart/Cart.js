@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Typography, Grid, Box } from "@material-ui/core";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../../contexts/CartContext";
 import CheckoutButton from "./CheckoutButton";
 import CartTotal from "./CartTotal";
 import CartEmpty from "./CartEmpty";

@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ProductContext } from "../contexts/ProductContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import { Grid, Typography, Box } from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
 import ProductImg from "./ProductImg";
-import { fetchProduct } from "../helpers/products/productHelpers";
+import { fetchProduct } from "../../helpers/products/productHelpers";
 import ProductSocialShareButtons from "./ProductSocialShareButtons";
 
 const Product = (props) => {

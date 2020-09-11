@@ -9,8 +9,8 @@ import {
 	Button,
 	makeStyles,
 } from "@material-ui/core";
-import firebase from "../config/firebase";
-import { fetchImage } from "../helpers/images/imageHelpers";
+import firebase from "../../config/firebase";
+import { fetchImage } from "../../helpers/images/imageHelpers";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const ProductCard = ({ product, imageUrl }) => {

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ProductContext } from "../contexts/ProductContext";
-import { CollectionContext } from "../contexts/CollectionContext";
+import { ProductContext } from "../../contexts/ProductContext";
+import { CollectionContext } from "../../contexts/CollectionContext";
 import {
 	Grid,
 	Typography,
@@ -18,7 +18,7 @@ import {
 	sortAlphaDescending,
 	sortPriceAscending,
 	sortPriceDescending,
-} from "../helpers/collections/collectionHelpers";
+} from "../../helpers/collections/collectionHelpers";
 import CollectionProductList from "./CollectionProductList";
 
 const Collection = (props) => {

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Button, FormControl, Snackbar } from "@material-ui/core";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { addToCart, increaseOrderQuantity } from "../actions/cartActions";
+import { addToCart, increaseOrderQuantity } from "../../actions/cartActions";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);

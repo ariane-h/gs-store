@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, makeStyles, Typography, Grid } from "@material-ui/core";
-import { fetchImage } from "../helpers/images/imageHelpers";
-import firebase from "../config/firebase";
+import { fetchImage } from "../../helpers/images/imageHelpers";
+import firebase from "../../config/firebase";
 import { Link } from "react-router-dom";
 
 const Home = () => {
