@@ -9,8 +9,8 @@ const SearchResults = () => {
 	const { products } = useContext(ProductContext);
 	const [searchResults, setSearchResults] = useState([]);
 
-	const searchParam = window.location.search;
-	const query = searchParam.slice(3, searchParam.length);
+	const params = new URL(document.location).searchParams;
+	const query = params.get("s");
 
 	useEffect(() => {
 		const loadSearchResults = async () => {
