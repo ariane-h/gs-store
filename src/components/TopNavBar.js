@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import SearchBar from "./SearchBar";
+import HelpOutlineRoundedIcon from "@material-ui/icons/HelpOutlineRounded";
 
 const TopNavBar = () => {
 	const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,7 @@ const TopNavBar = () => {
 			flex: 1,
 		},
 		iconButton: {
-			padding: 10,
+			color: "darkslategrey",
 		},
 	}));
 
@@ -61,13 +62,22 @@ const TopNavBar = () => {
 					<SearchBar />
 
 					<NavLink to="#">
-						<IconButton color="primary" aria-label="my account">
+						<IconButton aria-label="my account" className={classes.iconButton}>
 							<PersonOutlineOutlinedIcon />
 						</IconButton>
 					</NavLink>
 
+					<NavLink to="contact">
+						<IconButton aria-label="help" className={classes.iconButton}>
+							<HelpOutlineRoundedIcon />
+						</IconButton>
+					</NavLink>
+
 					<NavLink to="/cart">
-						<IconButton color="primary" aria-label="shopping cart">
+						<IconButton
+							aria-label="shopping cart"
+							className={classes.iconButton}
+						>
 							<ShoppingBasketIcon />
 						</IconButton>
 					</NavLink>

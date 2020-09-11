@@ -1,6 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Toolbar, AppBar, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import {
+	Toolbar,
+	AppBar,
+	makeStyles,
+	Typography,
+	Box,
+} from "@material-ui/core";
+import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 
 const PromoBar = () => {
 	const useStyles = makeStyles((theme) => ({
@@ -12,18 +19,20 @@ const PromoBar = () => {
 			position: "inherit",
 		},
 
-		link: {
-			margin: theme.spacing(1, 1.5),
-		},
-		root: {
-			padding: "2px 4px",
+		content: {
+			textAlign: "center",
 			display: "flex",
-			alignItems: "center",
-			width: 300,
+			flexDirection: "column",
+			padding: "5px",
 		},
-
-		iconButton: {
-			padding: 10,
+		link: {
+			textDecoration: "none",
+		},
+		title: {
+			width: "130px",
+			display: "flex",
+			justifyContent: "space-evenly",
+			alignItems: "center",
 		},
 	}));
 
@@ -33,11 +42,44 @@ const PromoBar = () => {
 		<>
 			<AppBar position="static" color="default" elevation={0}>
 				<Toolbar className={classes.toolbar}>
-					<NavLink to="/cart">Delivery Info</NavLink>
+					<Link to="/delivery" className={classes.link} color="inherit">
+						<Box className={classes.content}>
+							<Box className={classes.title}>
+								<Typography
+									variant="overline"
+									style={{ lineHeight: "2" }}
+									color="textPrimary"
+								>
+									Delivery Info
+								</Typography>
+								<LocalShippingIcon
+									fontSize="small"
+									style={{ color: "darkslategrey", paddingLeft: "2px" }}
+								/>
+							</Box>
+							<Typography variant="caption" color="textPrimary">
+								Find out more
+							</Typography>
+						</Box>
+					</Link>
 
-					<NavLink to="/cart">Delivery Info</NavLink>
+					<Link to="/womens" className={classes.link} color="inherit">
+						<Box className={classes.content}>
+							<Box className={classes.title}>
+								<Typography
+									variant="overline"
+									style={{ lineHeight: "2" }}
+									color="textPrimary"
+								>
+									SALE
+								</Typography>
+							</Box>
 
-					<NavLink to="/cart">Delivery Info</NavLink>
+							<Typography variant="caption" color="textPrimary">
+								Up to 20% off
+							</Typography>
+						</Box>
+					</Link>
 				</Toolbar>
 			</AppBar>
 		</>
