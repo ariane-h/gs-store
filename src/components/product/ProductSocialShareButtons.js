@@ -14,7 +14,7 @@ const ProductSocialShareButtons = ({ title }) => {
 		container: {
 			display: "flex",
 			justifyContent: "space-around",
-			width: "40%",
+			width: "300px",
 			color: "dimgrey",
 			border: "solid 1px",
 			padding: "10px",

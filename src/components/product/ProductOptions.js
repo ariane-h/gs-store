@@ -35,6 +35,7 @@ const ProductOptions = ({ product, sizeData }) => {
 	const useStyles = makeStyles((theme) => ({
 		formControl: {
 			minWidth: 120,
+			width: "200px",
 		},
 	}));
 
@@ -45,29 +46,27 @@ const ProductOptions = ({ product, sizeData }) => {
 	} else {
 		return (
 			<>
-				<Box height="80%" pt={2}>
-					<Box height="50%">
-						<FormControl variant="outlined" className={classes.formControl}>
-							<InputLabel id="select-size">Size</InputLabel>
-							<Select
-								labelId="select-size"
-								id="select-size"
-								value={selectedSize}
-								onChange={handleChange}
-								label="Size"
-							>
-								{sizeData.map((sizeOption, i) => sizeMenuItem(sizeOption, i))}
-							</Select>
-						</FormControl>
-					</Box>
+				<Box>
+					<FormControl variant="outlined" className={classes.formControl}>
+						<InputLabel id="select-size">Size</InputLabel>
+						<Select
+							labelId="select-size"
+							id="select-size"
+							value={selectedSize}
+							onChange={handleChange}
+							label="Size"
+						>
+							{sizeData.map((sizeOption, i) => sizeMenuItem(sizeOption, i))}
+						</Select>
+					</FormControl>
+				</Box>
 
-					<Box height="50%">
-						<AddToCartButton
-							product={product}
-							selectedSize={selectedSize}
-							availableQty={selectedSize.qty}
-						/>
-					</Box>
+				<Box>
+					<AddToCartButton
+						product={product}
+						selectedSize={selectedSize}
+						availableQty={selectedSize.qty}
+					/>
 				</Box>
 			</>
 		);

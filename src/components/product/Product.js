@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, makeStyles } from "@material-ui/core";
 import ProductDescription from "./ProductDescription";
 import ProductTabs from "./ProductTabs";
 import ProductOptions from "./ProductOptions";
@@ -31,6 +31,25 @@ const Product = (props) => {
 		updateProduct();
 	}, [productId, products]);
 
+	const useStyles = makeStyles((theme) => ({
+		infoContainer: {
+			height: "80%",
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "space-evenly",
+			paddingTop: "70px",
+			paddingLeft: "50px",
+		},
+		options: {
+			height: "300px",
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "space-evenly",
+		},
+	}));
+
+	const classes = useStyles();
+
 	if (!product) {
 		return null;
 	} else {
@@ -39,32 +58,30 @@ const Product = (props) => {
 				<Grid container>
 					<Grid item xs={false} sm={1} />
 
-					<Grid container item direction="column" sm={10} spacing={5}>
+					<Grid container item direction="column" sm={10} spacing={2}>
 						<Grid container item direction="row">
-							<Grid item sm={6}>
-								<Box>
-									<ProductImg imageUrl={product.imageUrl} />
-								</Box>
+							<Grid item xs={12} sm={6}>
+								<ProductImg imageUrl={product.imageUrl} />
 							</Grid>
-							<Grid item sm={6}>
-								<Box height="70%" width="100%">
-									<Box height="30%">
-										<Box mt={6}>
-											<Typography variant="h4" component="h1" gutterBottom>
-												{product.title}
-											</Typography>
+							<Grid item xs={12} sm={6}>
+								<Box className={classes.infoContainer}>
+									<Box>
+										<Typography variant="h4" component="h1" gutterBottom>
+											{product.title}
+										</Typography>
 
-											<Typography variant="h5" gutterBottom>
-												{product.price && `£ ${product.price.toFixed(2)}`}
-											</Typography>
-										</Box>
+										<Typography variant="h5" gutterBottom>
+											{product.price && `£ ${product.price.toFixed(2)}`}
+										</Typography>
 									</Box>
 
-									<Box height="70%">
+									<Box className={classes.options}>
 										<ProductOptions
 											product={product}
 											sizeData={product.sizes}
 										/>
+									</Box>
+									<Box>
 										<ProductSocialShareButtons title={product.title} />
 									</Box>
 								</Box>

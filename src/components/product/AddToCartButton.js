@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Button, FormControl, Snackbar } from "@material-ui/core";
+import { Button, FormControl, Snackbar, makeStyles } from "@material-ui/core";
 import { CartContext } from "../../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { addToCart, increaseOrderQuantity } from "../../actions/cartActions";
+import { teal } from "@material-ui/core/colors";
 
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
@@ -81,6 +82,20 @@ const AddToCartButton = (props) => {
 		return <MuiAlert elevation={6} variant="filled" {...props} />;
 	}
 
+	const useStyles = makeStyles((theme) => ({
+		button: {
+			width: "300px",
+			height: "50px",
+			backgroundColor: teal[700],
+			"&:hover": {
+				backgroundColor: teal[800],
+				color: "#FFF",
+			},
+		},
+	}));
+
+	const classes = useStyles();
+
 	return (
 		<>
 			<FormControl variant="outlined" onClick={handleSubmit}>
@@ -90,6 +105,7 @@ const AddToCartButton = (props) => {
 					color="primary"
 					endIcon={<ShoppingBasketIcon />}
 					size="large"
+					className={classes.button}
 				>
 					Add to cart
 				</Button>
