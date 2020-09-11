@@ -10,7 +10,11 @@ import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import CartProductImg from "./CartProductImg";
-import { increaseOrderQuantity } from "../actions/cartActions";
+import {
+	increaseOrderQuantity,
+	decreaseOrderQuantity,
+	removeFromCart,
+} from "../actions/cartActions";
 
 const CartProductList = ({ cart, dispatch }) => {
 	const handleIncreaseQty = (sku, orderQty, availableQty) => {
@@ -23,11 +27,16 @@ const CartProductList = ({ cart, dispatch }) => {
 	};
 
 	const handleDecreaseQty = (sku, orderQty) => {
-		orderQty > 1 ? dispatch({ type: "DECREASE_QTY", sku }) : handleDelete(sku);
+		if (orderQty > 1) {
+			const newQty = orderQty - 1;
+			decreaseOrderQuantity(newQty, sku, dispatch);
+		} else {
+			handleDelete(sku);
+		}
 	};
 
 	const handleDelete = (sku) => {
-		dispatch({ type: "REMOVE_FROM_CART", sku });
+		removeFromCart(sku, dispatch);
 	};
 
 	const useStyles = makeStyles((theme) => ({

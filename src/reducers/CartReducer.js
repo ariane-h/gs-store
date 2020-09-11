@@ -11,11 +11,12 @@ export const cartReducer = (state, action) => {
 			});
 
 		case "DECREASE_QTY":
-			const productToDecrease = state.find(
-				(product) => product.sku === action.sku
-			);
-			productToDecrease.orderQty -= 1;
-			return [...state];
+			return state.map((product) => {
+				if (product.sku === action.sku) {
+					return { ...product, orderQty: action.newQty };
+				}
+				return product;
+			});
 
 		case "REMOVE_FROM_CART":
 			return state.filter((product) => product.sku !== action.sku);

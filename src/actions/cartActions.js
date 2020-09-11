@@ -21,3 +21,15 @@ export const increaseOrderQuantity = (newQty, sku, dispatch) => {
 		newQty,
 	});
 };
+
+export const decreaseOrderQuantity = (newQty, sku, dispatch) => {
+	dispatch({
+		type: "DECREASE_QTY",
+		sku,
+		newQty,
+	});
+};
+
+export const removeFromCart = (sku, dispatch) => {
+	dispatch({ type: "REMOVE_FROM_CART", sku });
+};
