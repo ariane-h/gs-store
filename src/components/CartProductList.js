@@ -15,8 +15,8 @@ import { increaseOrderQuantity } from "../actions/cartActions";
 const CartProductList = ({ cart, dispatch }) => {
 	const handleIncreaseQty = (sku, orderQty, availableQty) => {
 		if (orderQty < availableQty) {
-			// dispatch({ type: "INCREASE_QTY", sku });
-			// increaseOrderQuantity(newQty, product, dispatch);
+			const newQty = orderQty + 1;
+			increaseOrderQuantity(newQty, sku, dispatch);
 		} else {
 			alert(`only ${availableQty} available`);
 		}
