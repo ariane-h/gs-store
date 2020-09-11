@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, FormControl, Snackbar } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -8,14 +8,20 @@ import { addToCart, increaseOrderQuantity } from "../actions/cartActions";
 const AddToCartButton = (props) => {
 	const { cart, dispatch } = useContext(CartContext);
 	const { selectedSize, product, availableQty } = props;
-	const [openSuccess, setOpenSuccess] = React.useState(false);
-	const [openError, setOpenError] = React.useState(false);
-	const [openQtyAlert, setOpenQtyAlert] = React.useState(false);
+
+	const [alerts, setAlerts] = useState({
+		openSuccess: false,
+		openError: false,
+		openQtyAlert: false,
+	});
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (!selectedSize) {
-			return setOpenError(true);
+			return setAlerts({
+				...alerts,
+				openError: true,
+			});
 		}
 
 		const orderItem = {
@@ -35,16 +41,26 @@ const AddToCartButton = (props) => {
 
 		if (!productExistingInCart) {
 			addToCart(orderItem, dispatch);
-			setOpenSuccess(true);
+			setAlerts({
+				...alerts,
+				openSuccess: true,
+			});
 		} else if (
 			productExistingInCart.orderQty < productExistingInCart.availableQty
 		) {
 			const newQty = (productExistingInCart.orderQty += 1);
 			const sku = productExistingInCart.sku;
 			increaseOrderQuantity(newQty, sku, dispatch);
-			setOpenSuccess(true);
+
+			setAlerts({
+				...alerts,
+				openSuccess: true,
+			});
 		} else {
-			setOpenQtyAlert(true);
+			setAlerts({
+				...alerts,
+				openQtyAlert: true,
+			});
 		}
 	};
 
@@ -53,9 +69,12 @@ const AddToCartButton = (props) => {
 			return;
 		}
 
-		setOpenSuccess(false);
-		setOpenError(false);
-		setOpenQtyAlert(false);
+		setAlerts({
+			...alerts,
+			openError: false,
+			openSuccess: false,
+			openQtyAlert: false,
+		});
 	};
 
 	function Alert(props) {
@@ -77,7 +96,7 @@ const AddToCartButton = (props) => {
 			</FormControl>
 
 			<Snackbar
-				open={openSuccess}
+				open={alerts.openSuccess}
 				autoHideDuration={2000}
 				onClose={handleClose}
 			>
@@ -85,13 +104,17 @@ const AddToCartButton = (props) => {
 					Added to Cart
 				</Alert>
 			</Snackbar>
-			<Snackbar open={openError} autoHideDuration={2000} onClose={handleClose}>
+			<Snackbar
+				open={alerts.openError}
+				autoHideDuration={2000}
+				onClose={handleClose}
+			>
 				<Alert onClose={handleClose} severity="info">
 					Please choose a size
 				</Alert>
 			</Snackbar>
 			<Snackbar
-				open={openQtyAlert}
+				open={alerts.openQtyAlert}
 				autoHideDuration={2000}
 				onClose={handleClose}
 			>
