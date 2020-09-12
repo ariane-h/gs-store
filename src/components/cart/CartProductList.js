@@ -108,7 +108,10 @@ const CartProductList = ({ cart, dispatch }) => {
 								<Grid item xs={2} sm={2}>
 									<Link
 										to={`/products/${lineItem.id}`}
-										style={{ textDecoration: "none" }}
+										style={{
+											textDecoration: "none",
+											color: "rgba(0, 0, 0, 0.87)",
+										}}
 									>
 										<Typography variant="body1">{lineItem.title}</Typography>
 									</Link>

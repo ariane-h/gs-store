@@ -8,12 +8,37 @@ import {
 	Box,
 } from "@material-ui/core";
 import AddToCartButton from "./AddToCartButton";
+import BackInStockButton from "./BackInStockButton";
 
 const ProductOptions = ({ product, sizeData }) => {
 	const [selectedSize, setSelectedSize] = useState("");
 
+	const [showAddToCart, setShowAddToCart] = useState(true);
+
 	const handleChange = (event) => {
-		setSelectedSize(event.target.value);
+		if (event.target.value === "OOS") {
+			setShowAddToCart(false);
+			setSelectedSize(event.target.value);
+		} else {
+			setShowAddToCart(true);
+			setSelectedSize(event.target.value);
+		}
+	};
+
+	const actionButtons = () => {
+		if (showAddToCart) {
+			return (
+				<AddToCartButton
+					product={product}
+					selectedSize={selectedSize}
+					availableQty={selectedSize.qty}
+				/>
+			);
+		} else {
+			return (
+				<BackInStockButton product={product} selectedSize={selectedSize} />
+			);
+		}
 	};
 
 	const sizeMenuItem = (sizeOption, i) => {
@@ -25,8 +50,8 @@ const ProductOptions = ({ product, sizeData }) => {
 			);
 		} else {
 			return (
-				<MenuItem disabled={true} key={i} value={sizeOption}>
-					{sizeOption.title}
+				<MenuItem key={i} value={"OOS"}>
+					{`${sizeOption.title} - Out of stock`}
 				</MenuItem>
 			);
 		}
@@ -61,13 +86,7 @@ const ProductOptions = ({ product, sizeData }) => {
 					</FormControl>
 				</Box>
 
-				<Box>
-					<AddToCartButton
-						product={product}
-						selectedSize={selectedSize}
-						availableQty={selectedSize.qty}
-					/>
-				</Box>
+				<Box>{actionButtons}</Box>
 			</>
 		);
 	}
