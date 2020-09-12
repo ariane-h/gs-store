@@ -59,18 +59,6 @@ const Collection = (props) => {
 		updateCollectionDetails();
 	}, [collectionId, products, collections]);
 
-	const useStyles = makeStyles((theme) => ({
-		formControl: {
-			margin: theme.spacing(1),
-			minWidth: 120,
-		},
-		selectEmpty: {
-			marginTop: theme.spacing(2),
-		},
-	}));
-
-	const classes = useStyles();
-
 	const handleChange = (e) => {
 		const sortParam = e.target.value;
 		setSortValue(sortParam);
@@ -91,6 +79,23 @@ const Collection = (props) => {
 				return collectionProducts;
 		}
 	};
+
+	const useStyles = makeStyles((theme) => ({
+		formControl: {
+			margin: theme.spacing(1),
+			minWidth: 120,
+		},
+		selectEmpty: {
+			marginTop: theme.spacing(2),
+		},
+		sortSelector: {
+			display: "flex",
+			width: "80%",
+			flexDirection: "row-reverse",
+		},
+	}));
+
+	const classes = useStyles();
 
 	return (
 		<>
