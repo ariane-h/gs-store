@@ -9,7 +9,7 @@ const Menu = () => {
 		links: [
 			{ src: "/collections/womens", desc: "All Womens Shoes" },
 			{ src: "/collections/womens-trainers", desc: "Trainers" },
-			{ src: "/collections/womens-sandals", desc: "Sandals" },
+			{ src: "/collections/womens-shoes", desc: "Shoes" },
 			{ src: "/collections/womens-boots", desc: "Boots" },
 		],
 	};
@@ -19,7 +19,7 @@ const Menu = () => {
 		links: [
 			{ src: "/collections/mens", desc: "All Mens Shoes" },
 			{ src: "/collections/mens-trainers", desc: "Trainers" },
-			{ src: "/collections/men-shoes", desc: "Shoes" },
+			{ src: "/collections/mens-shoes", desc: "Shoes" },
 			{ src: "/collections/mens-boots", desc: "Boots" },
 		],
 	};
