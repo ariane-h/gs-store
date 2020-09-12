@@ -4,29 +4,27 @@ import { NavLink } from "react-router-dom";
 import MenuDropdown from "./MenuDropdown";
 
 const Menu = () => {
-	const womensCollections = {
+	const collectionLinksWomens = {
 		title: "Womens",
-		linkOne: "/collections/womens",
-		linkOneTitle: "All Womens Shoes",
-		linkTwo: "/collections/womens-trainers",
-		linkTwoTitle: "Trainers",
-		linkThree: "/collections/womens-sandals",
-		linkThreeTitle: "Sandals",
-		linkFour: "/collections/womens-boots",
-		linkFourTitle: "Boots",
+		links: [
+			{ src: "/collections/womens", desc: "All Womens Shoes" },
+			{ src: "/collections/womens-trainers", desc: "Trainers" },
+			{ src: "/collections/womens-sandals", desc: "Sandals" },
+			{ src: "/collections/womens-boots", desc: "Boots" },
+		],
 	};
 
-	const mensCollections = {
+	const collectionLinksMens = {
 		title: "Mens",
-		linkOne: "/collections/mens",
-		linkOneTitle: "All Mens Shoes",
-		linkTwo: "/collections/mens-trainers",
-		linkTwoTitle: "Trainers",
-		linkThree: "/collections/men-shoes",
-		linkThreeTitle: "Shoes",
-		linkFour: "/collections/mens-boots",
-		linkFourTitle: "Boots",
+		links: [
+			{ src: "/collections/mens", desc: "All Mens Shoes" },
+			{ src: "/collections/mens-trainers", desc: "Trainers" },
+			{ src: "/collections/men-shoes", desc: "Shoes" },
+			{ src: "/collections/mens-boots", desc: "Boots" },
+		],
 	};
+
+	const collections = [collectionLinksWomens, collectionLinksMens];
 
 	return (
 		<Toolbar>
@@ -34,8 +32,9 @@ const Menu = () => {
 				Home
 			</Button>
 
-			<MenuDropdown links={womensCollections} />
-			<MenuDropdown links={mensCollections} />
+			{collections.map((collection) => (
+				<MenuDropdown menuItems={collection} key={collection.title} />
+			))}
 
 			<Button color="inherit" component={NavLink} to="/cart">
 				Cart

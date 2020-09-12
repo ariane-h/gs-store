@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-const MenuDropdown = ({ links }) => {
+const MenuDropdown = ({ menuItems }) => {
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef(null);
 
@@ -62,7 +62,7 @@ const MenuDropdown = ({ links }) => {
 
 	const classes = useStyles();
 
-	if (links) {
+	if (menuItems) {
 		return (
 			<>
 				<Box className={classes.container}>
@@ -72,7 +72,7 @@ const MenuDropdown = ({ links }) => {
 						aria-haspopup="true"
 						onClick={handleToggle}
 					>
-						{links.title}
+						{menuItems.title}
 					</Button>
 					<Popper
 						open={open}
@@ -96,41 +96,22 @@ const MenuDropdown = ({ links }) => {
 											id="menu-list-grow"
 											onKeyDown={handleListKeyDown}
 										>
-											<NavLink to={links.linkOne} className={classes.links}>
-												<MenuItem
-													onClick={handleClose}
-													className={classes.text}
-												>
-													{links.linkOneTitle}
-												</MenuItem>
-											</NavLink>
-
-											<NavLink to={links.linkTwo} className={classes.links}>
-												<MenuItem
-													onClick={handleClose}
-													className={classes.text}
-												>
-													{links.linkTwoTitle}
-												</MenuItem>
-											</NavLink>
-
-											<NavLink to={links.linkThree} className={classes.links}>
-												<MenuItem
-													onClick={handleClose}
-													className={classes.text}
-												>
-													{links.linkThreeTitle}
-												</MenuItem>
-											</NavLink>
-
-											<NavLink to={links.linkFour} className={classes.links}>
-												<MenuItem
-													onClick={handleClose}
-													className={classes.text}
-												>
-													{links.linkFourTitle}
-												</MenuItem>
-											</NavLink>
+											{menuItems.links.map((link) => {
+												return (
+													<NavLink
+														to={link.src}
+														className={classes.links}
+														key={link.src}
+													>
+														<MenuItem
+															onClick={handleClose}
+															className={classes.text}
+														>
+															{link.desc}
+														</MenuItem>
+													</NavLink>
+												);
+											})}
 										</MenuList>
 									</ClickAwayListener>
 								</Paper>
