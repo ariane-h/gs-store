@@ -11,8 +11,8 @@ import {
 	DialogActions,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { grey } from "@material-ui/core/colors";
+import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
 
 const BackInStockButton = (props) => {
 	const [open, setOpen] = useState(false);
@@ -59,7 +59,7 @@ const BackInStockButton = (props) => {
 		<>
 			<Button
 				variant="outlined"
-				endIcon={<ShoppingBasketIcon />}
+				endIcon={<EmailRoundedIcon />}
 				size="large"
 				type="submit"
 				className={classes.button}

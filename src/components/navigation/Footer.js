@@ -33,24 +33,40 @@ const Footer = () => {
 				<Grid container direction="row" justify="space-evenly" spacing={4}>
 					<Grid item xs={4}>
 						<Box display="flex" flexDirection="column" alignItems="center">
-							<Typography variant="body1">Help and Info</Typography>
-							<Typography variant="body2">Contact</Typography>
-							<Typography variant="body2">Delivery and Returns</Typography>
+							<Typography variant="body1" gutterBottom>
+								Help and Info
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								Contact
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								Delivery and Returns
+							</Typography>
 							<Typography variant="body2">Find a Store</Typography>
 						</Box>
 					</Grid>
 					<Grid item xs={4}>
 						<Box display="flex" flexDirection="column" alignItems="center">
-							<Typography variant="body1">About</Typography>
-							<Typography variant="body2">About Us</Typography>
+							<Typography variant="body1" gutterBottom>
+								About
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								About Us
+							</Typography>
 							<Typography variant="body2">Careers</Typography>
 						</Box>
 					</Grid>
 					<Grid item xs={4}>
 						<Box display="flex" flexDirection="column" alignItems="center">
-							<Typography variant="body1">Follow</Typography>
-							<Typography variant="body2">Twitter</Typography>
-							<Typography variant="body2">Facebook</Typography>
+							<Typography variant="body1" gutterBottom>
+								Follow
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								Twitter
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								Facebook
+							</Typography>
 							<Typography variant="body2">Instagram</Typography>
 						</Box>
 					</Grid>
