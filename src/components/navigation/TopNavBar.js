@@ -19,7 +19,6 @@ const TopNavBar = () => {
 			backgroundColor: "#F8F3F2",
 		},
 		toolbar: {
-			flexWrap: "wrap",
 			minHeight: "30px",
 		},
 		toolbarTitle: {
