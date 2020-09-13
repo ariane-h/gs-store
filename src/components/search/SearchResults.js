@@ -10,7 +10,7 @@ const SearchResults = () => {
 	const [searchResults, setSearchResults] = useState([]);
 
 	const params = new URL(document.location).searchParams;
-	const query = params.get("s");
+	const query = params.get("s").toLowerCase();
 
 	useEffect(() => {
 		const loadSearchResults = async () => {
