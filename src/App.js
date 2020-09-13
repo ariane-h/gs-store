@@ -20,7 +20,7 @@ function App() {
 		<BrowserRouter>
 			<div className="app">
 				<Grid container direction="column">
-					<Grid item>
+					<Grid item xs>
 						<Header />
 					</Grid>
 

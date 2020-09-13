@@ -18,6 +18,7 @@ const ProductCard = ({ product, imageUrl }) => {
 			justifyContent: "space-between",
 			width: "360px",
 			height: "384px",
+			margin: 20,
 		},
 		cardImage: {
 			height: "auto",

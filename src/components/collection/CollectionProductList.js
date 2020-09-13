@@ -13,7 +13,7 @@ const CollectionProductList = ({ collectionProducts }) => {
 	const classes = useStyles();
 
 	return (
-		<Grid container direction="row" item sm={10} spacing={3}>
+		<Grid container direction="row" item sm={10}>
 			{collectionProducts &&
 				collectionProducts.map((product) => {
 					return (
@@ -21,7 +21,9 @@ const CollectionProductList = ({ collectionProducts }) => {
 							container
 							item
 							xs={12}
-							sm={4}
+							sm={12}
+							md={6}
+							lg={4}
 							key={product.id}
 							className={classes.container}
 						>
