@@ -6,6 +6,8 @@ A responsive e-commerce web app.
 
 The app lives here on the web: https://shoe-shop-f5df2.web.app/
 
+![ store demo ](public/img/gs-shoe-store-min.gif)
+
 ## :art: Features
 
 - Built with React.
