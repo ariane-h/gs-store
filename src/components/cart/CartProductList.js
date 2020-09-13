@@ -6,6 +6,7 @@ import {
 	IconButton,
 	makeStyles,
 	Snackbar,
+	Hidden,
 } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import AddIcon from "@material-ui/icons/Add";
@@ -69,22 +70,24 @@ const CartProductList = ({ cart, dispatch }) => {
 	return (
 		<>
 			<Grid container item xs={12} className={classes.productList}>
-				<Grid container item direction="row" xs={12} sm={12}>
-					<Grid item xs={4} sm={2}></Grid>
-					<Grid item xs={2} sm={2}>
-						<Typography variant="subtitle1">Product</Typography>
+				<Hidden xsDown>
+					<Grid container item direction="row" sm={12}>
+						<Grid item sm={2}></Grid>
+						<Grid item sm={2}>
+							<Typography variant="subtitle1">Product</Typography>
+						</Grid>
+						<Grid item sm={2}>
+							<Typography variant="subtitle1">Size</Typography>
+						</Grid>
+						<Grid item sm={2}>
+							<Typography variant="subtitle1">Qty</Typography>
+						</Grid>
+						<Grid item sm={2}>
+							<Typography variant="subtitle1">Price</Typography>
+						</Grid>
+						<Grid item sm={2}></Grid>
 					</Grid>
-					<Grid item xs={1} sm={2}>
-						<Typography variant="subtitle1">Size</Typography>
-					</Grid>
-					<Grid item xs={2} sm={2}>
-						<Typography variant="subtitle1">Qty</Typography>
-					</Grid>
-					<Grid item xs={1} sm={2}>
-						<Typography variant="subtitle1">Price</Typography>
-					</Grid>
-					<Grid item xs={2} sm={2}></Grid>
-				</Grid>
+				</Hidden>
 
 				{cart &&
 					cart.map((lineItem) => {
@@ -97,15 +100,17 @@ const CartProductList = ({ cart, dispatch }) => {
 								alignItems="center"
 								xs={12}
 							>
-								<Grid item xs={4} sm={2}>
-									<Link to={`/products/${lineItem.id}`}>
-										<CartProductImg
-											imageUrl={lineItem.imageUrl}
-											altText={lineItem.title}
-										/>
-									</Link>
-								</Grid>
-								<Grid item xs={2} sm={2}>
+								<Hidden xsDown>
+									<Grid item sm={2}>
+										<Link to={`/products/${lineItem.id}`}>
+											<CartProductImg
+												imageUrl={lineItem.imageUrl}
+												altText={lineItem.title}
+											/>
+										</Link>
+									</Grid>
+								</Hidden>
+								<Grid item xs={3} sm={2}>
 									<Link
 										to={`/products/${lineItem.id}`}
 										style={{
@@ -116,10 +121,10 @@ const CartProductList = ({ cart, dispatch }) => {
 										<Typography variant="body1">{lineItem.title}</Typography>
 									</Link>
 								</Grid>
-								<Grid item xs={1} sm={2}>
+								<Grid item xs={2} sm={2}>
 									<Typography variant="body1">{lineItem.size}</Typography>
 								</Grid>
-								<Grid item xs={2} sm={2}>
+								<Grid item xs={3} sm={2}>
 									<Box
 										display="flex"
 										alignItems="center"
@@ -148,13 +153,13 @@ const CartProductList = ({ cart, dispatch }) => {
 										</IconButton>
 									</Box>
 								</Grid>
-								<Grid item xs={1} sm={2}>
+								<Grid item xs={2} sm={2}>
 									<Typography variant="body1">
 										{`£${lineItem.price.toFixed(2)}`}
 									</Typography>
 								</Grid>
 
-								<Grid item xs={1} sm={2}>
+								<Grid item xs={2} sm={2}>
 									<IconButton
 										aria-label="delete"
 										onClick={() => handleDelete(lineItem.sku)}
