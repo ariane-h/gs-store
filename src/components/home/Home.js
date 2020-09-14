@@ -35,7 +35,6 @@ const Home = () => {
 		},
 
 		container: {
-			flexGrow: 1,
 			textAlign: "center",
 		},
 
@@ -50,56 +49,88 @@ const Home = () => {
 			textDecoration: "none",
 			color: "rgba(0, 0, 0, 0.87)",
 		},
+		promoImage: {
+			height: 300,
+			[theme.breakpoints.down("md")]: {
+				height: 200,
+				fontSize: "3em",
+			},
+
+			[theme.breakpoints.down("xs")]: {
+				height: 160,
+				fontSize: "3em",
+			},
+		},
+		imageContainer: {
+			display: "flex",
+			justifyContent: "center",
+			textAlign: "center",
+			paddingTop: 15,
+			paddingBottom: 15,
+		},
 	}));
 
 	const classes = useStyles();
 
 	return (
 		<>
-			<Box className={classes.hero}>
-				<Link to="/collections/womens-trainers" className={classes.heroLink}>
-					<Typography variant="h2">Your Favourite Pair</Typography>
-					<Typography variant="h5">Shop Womens Trainers</Typography>
-				</Link>
-			</Box>
+			<Grid container>
+				<Grid item xs={12}>
+					<Box className={classes.hero}>
+						<Link
+							to="/collections/womens-trainers"
+							className={classes.heroLink}
+						>
+							<Typography variant="h2">Your Favourite Pair</Typography>
+							<Typography variant="h5">Shop Womens Trainers</Typography>
+						</Link>
+					</Box>
+				</Grid>
 
-			<Box className={classes.container}>
 				<Grid container>
-					<Grid item xs={12} sm={4}>
-						<Link to="/collections/mens" className={classes.promoLink}>
-							<img
-								className={classes.promo}
-								src="img/airjordan-red.jpg"
-								height="300"
-								alt=""
-							/>
-							<Typography variant="h5">Mens Shoes</Typography>
-						</Link>
+					<Grid item xs={12} sm={12} md={4}>
+						<Box className={classes.imageContainer}>
+							<Link to="/collections/mens" className={classes.promoLink}>
+								<img
+									src="img/airjordan-red.jpg"
+									alt=""
+									className={classes.promoImage}
+								/>
+								<Typography variant="h5">Mens Shoes</Typography>
+							</Link>
+						</Box>
 					</Grid>
-					<Grid item xs={12} sm={4}>
-						<Link to="/collections/womens" className={classes.promoLink}>
-							<img
-								className={classes.promo}
-								src="img/mint-flats.jpg"
-								height="300"
-								alt=""
-							/>
-							<Typography variant="h5">Womens Shoes</Typography>
-						</Link>
+
+					<Grid item xs={12} sm={12} md={4}>
+						<Box className={classes.imageContainer}>
+							<Link to="/collections/womens" className={classes.promoLink}>
+								<img
+									src="img/mint-flats.jpg"
+									alt=""
+									className={classes.promoImage}
+								/>
+								<Typography variant="h5">Womens Shoes</Typography>
+							</Link>
+						</Box>
 					</Grid>
-					<Grid item xs={12} sm={4}>
-						<Link to="/collections/womens-boots" className={classes.promoLink}>
-							<img
-								className={classes.promo}
-								src="img/converse.jpg"
-								height="300"
-								alt=""
-							/>
-							<Typography variant="h5">Womens Boots</Typography>
-						</Link>
+
+					<Grid item xs={12} sm={12} md={4}>
+						<Box className={classes.imageContainer}>
+							<Link
+								to="/collections/womens-boots"
+								className={classes.promoLink}
+							>
+								<img
+									src="img/converse.jpg"
+									alt=""
+									className={classes.promoImage}
+								/>
+								<Typography variant="h5">Womens Boots</Typography>
+							</Link>
+						</Box>
 					</Grid>
 				</Grid>
-			</Box>
+			</Grid>
 		</>
 	);
 };

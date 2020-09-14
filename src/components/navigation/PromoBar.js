@@ -23,7 +23,6 @@ const PromoBar = () => {
 			textDecoration: "none",
 		},
 		title: {
-			width: "130px",
 			display: "flex",
 			justifyContent: "space-evenly",
 			alignItems: "center",
