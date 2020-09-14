@@ -21,7 +21,7 @@ const Header = () => {
 		<>
 			<TopNavBar />
 			<Grid container direction="column" justify="center" alignItems="center">
-				<Link to="/home" className={classes.link}>
+				<Link to="/" className={classes.link}>
 					<Typography variant="h4" gutterBottom className={classes.logo}>
 						golden shoe
 					</Typography>
