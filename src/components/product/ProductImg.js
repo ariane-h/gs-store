@@ -6,15 +6,19 @@ import { makeStyles, Box } from "@material-ui/core";
 const ProductImg = ({ imageUrl }) => {
 	const [productImg, setProductImg] = useState("");
 
-	const useStyles = makeStyles({
+	const useStyles = makeStyles((theme) => ({
 		productImage: {
 			paddingTop: "40px",
+			height: 500,
+			[theme.breakpoints.down("xs")]: {
+				height: 350,
+			},
 		},
 		imageContainer: {
 			display: "flex",
 			justifyContent: "center",
 		},
-	});
+	}));
 
 	const classes = useStyles();
 
@@ -25,12 +29,7 @@ const ProductImg = ({ imageUrl }) => {
 
 	return (
 		<Box className={classes.imageContainer}>
-			<img
-				src={productImg}
-				height="500"
-				alt=""
-				className={classes.productImage}
-			/>
+			<img src={productImg} alt="" className={classes.productImage} />
 		</Box>
 	);
 };
