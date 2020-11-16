@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useContext } from 'react';
 import {
 	AppBar,
 	Toolbar,
 	Typography,
 	makeStyles,
 	IconButton,
-} from "@material-ui/core";
-import { NavLink } from "react-router-dom";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
-import SearchBar from "../search/SearchBar";
-import HelpOutlineRoundedIcon from "@material-ui/icons/HelpOutlineRounded";
+} from '@material-ui/core';
+import { withRouter, NavLink } from 'react-router-dom';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import SearchBar from '../search/SearchBar';
+import HelpOutlineRoundedIcon from '@material-ui/icons/HelpOutlineRounded';
+import firebase from '../../config/firebase';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { AuthContext } from '../../contexts/AuthContext';
 
-const TopNavBar = () => {
+const TopNavBar = (props) => {
+	const { currentUser } = useContext(AuthContext);
+
 	const useStyles = makeStyles((theme) => ({
 		appBar: {
-			marginBottom: "20px",
-			backgroundColor: "#F8F3F2",
+			marginBottom: '20px',
+			backgroundColor: '#F8F3F2',
 		},
 		toolbar: {
-			minHeight: "30px",
+			minHeight: '30px',
 		},
 		toolbarTitle: {
 			flexGrow: 1,
 		},
 		iconButton: {
-			color: "rgba(0, 0, 0, 0.87)",
+			color: 'rgba(0, 0, 0, 0.87)',
 		},
 	}));
 
 	const classes = useStyles();
+
+	const handleSignOut = () => {
+		props.history.push('/login');
+		firebase.auth().signOut();
+	};
+
 	return (
 		<>
 			<AppBar
@@ -68,10 +79,20 @@ const TopNavBar = () => {
 							<ShoppingBasketIcon />
 						</IconButton>
 					</NavLink>
+
+					{currentUser ? (
+						<IconButton
+							aria-label="logout"
+							className={classes.iconButton}
+							onClick={handleSignOut}
+						>
+							<LockOpenIcon />
+						</IconButton>
+					) : null}
 				</Toolbar>
 			</AppBar>
 		</>
 	);
 };
 
-export default TopNavBar;
+export default withRouter(TopNavBar);
