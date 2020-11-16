@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Box, makeStyles, Typography, Grid } from '@material-ui/core';
 import { fetchImage } from '../../helpers/images/imageHelpers';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Home = () => {
 	const [heroImgUrl, setHeroImgUrl] = useState('');
+	const { currentUser } = useContext(AuthContext);
 
 	const heroSrc = 'gs://shoe-shop-f5df2.appspot.com/nike-air-max.jpg';
 
@@ -78,67 +80,71 @@ const Home = () => {
 
 	const classes = useStyles();
 
-	return (
-		<>
-			<Grid container>
-				<Grid item xs={12}>
-					<Box className={classes.hero}>
-						<Link
-							to="/collections/womens-trainers"
-							className={classes.heroLink}
-						>
-							<Typography variant="h2">Your Favourite Pair</Typography>
-							<Typography variant="h5">Shop Womens Trainers</Typography>
-						</Link>
-					</Box>
-				</Grid>
-
+	if (currentUser) {
+		return (
+			<>
 				<Grid container>
-					<Grid item xs={12} sm={12} md={4}>
-						<Box className={classes.imageContainer}>
-							<Link to="/collections/mens" className={classes.promoLink}>
-								<img
-									src="img/airjordan-red.jpg"
-									alt=""
-									className={classes.promoImage}
-								/>
-								<Typography variant="h5">Mens Shoes</Typography>
-							</Link>
-						</Box>
-					</Grid>
-
-					<Grid item xs={12} sm={12} md={4}>
-						<Box className={classes.imageContainer}>
-							<Link to="/collections/womens" className={classes.promoLink}>
-								<img
-									src="img/mint-flats.jpg"
-									alt=""
-									className={classes.promoImage}
-								/>
-								<Typography variant="h5">Womens Shoes</Typography>
-							</Link>
-						</Box>
-					</Grid>
-
-					<Grid item xs={12} sm={12} md={4}>
-						<Box className={classes.imageContainer}>
+					<Grid item xs={12}>
+						<Box className={classes.hero}>
 							<Link
-								to="/collections/womens-boots"
-								className={classes.promoLink}
+								to="/collections/womens-trainers"
+								className={classes.heroLink}
 							>
-								<img
-									src="img/converse.jpg"
-									alt=""
-									className={classes.promoImage}
-								/>
-								<Typography variant="h5">Womens Boots</Typography>
+								<Typography variant="h2">Your Favourite Pair</Typography>
+								<Typography variant="h5">Shop Womens Trainers</Typography>
 							</Link>
 						</Box>
+					</Grid>
+
+					<Grid container>
+						<Grid item xs={12} sm={12} md={4}>
+							<Box className={classes.imageContainer}>
+								<Link to="/collections/mens" className={classes.promoLink}>
+									<img
+										src="img/airjordan-red.jpg"
+										alt=""
+										className={classes.promoImage}
+									/>
+									<Typography variant="h5">Mens Shoes</Typography>
+								</Link>
+							</Box>
+						</Grid>
+
+						<Grid item xs={12} sm={12} md={4}>
+							<Box className={classes.imageContainer}>
+								<Link to="/collections/womens" className={classes.promoLink}>
+									<img
+										src="img/mint-flats.jpg"
+										alt=""
+										className={classes.promoImage}
+									/>
+									<Typography variant="h5">Womens Shoes</Typography>
+								</Link>
+							</Box>
+						</Grid>
+
+						<Grid item xs={12} sm={12} md={4}>
+							<Box className={classes.imageContainer}>
+								<Link
+									to="/collections/womens-boots"
+									className={classes.promoLink}
+								>
+									<img
+										src="img/converse.jpg"
+										alt=""
+										className={classes.promoImage}
+									/>
+									<Typography variant="h5">Womens Boots</Typography>
+								</Link>
+							</Box>
+						</Grid>
 					</Grid>
 				</Grid>
-			</Grid>
-		</>
-	);
+			</>
+		);
+	} else {
+		return null;
+	}
 };
 
 export default Home;
